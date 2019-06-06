@@ -18,6 +18,10 @@ export default (request, cacheVersion) => {
             return cacheFetchRaceFinallyRenew(request, cacheVersion).catch(error => {
                 console.error('Policy cacheFetchRaceFinallyRenew failed. ' + error)
             });
+        default:
+            return networkFirst(request, cacheVersion).catch(error => {
+                console.error('Policy networkFirst failed. ' + error)
+            });
     }
 };
 
