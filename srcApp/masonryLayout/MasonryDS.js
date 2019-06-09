@@ -3,7 +3,7 @@ import '../utility/tail';
 
 // This is a data structure stores masonry layout information.
 // 1. itemIndexMatrix tells masonry layout arrangement
-//     to display which post in which cube. This is the most important
+//     to display which item in which cell. This is the most important
 //     property in this data structure.
 // 2. cellHeight and offsetBottomMatrix is for positioning new cubes.
 // let masonryDS = {
@@ -95,6 +95,18 @@ class ColumnNoDS {
         this.offsetBottomMatrix[this.getShortestColumnIndex()] =
             this.offsetBottomMatrix[this.getShortestColumnIndex()].concat(offsetBottom);
     };
+
+    followCellHeights = (cellHeights) => {
+        let lcii = this.getLastCellsItemIndex(); // last cell's item index
+        let chl = cellHeights.length; // cell heights length
+        while (++lcii < chl) {
+            this.concatItemIndex(lcii);
+            this.concatOffsetBottom(cellHeights[lcii]);
+        }
+    };
+
+    // todo:
+    updateColumnHeights = () => {};
 
     // todo: 重新render之后自动滚动到之前的位置。
     getSmallestItemIndexInViewport = (scrollHeight) => {

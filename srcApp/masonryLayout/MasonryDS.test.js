@@ -1,15 +1,15 @@
 import DS from './MasonryDS';
 
-const ds = new DS();
-const cw = 20;
-const cn = 2;
-
 test('new cwds', () => {
+    const ds = new DS();
+    const cw = 20;
     ds.getCwds(cw);
     expect(ds[cw].cellHeights).toEqual([]);
 });
 
 test('push cell height', () => {
+    const ds = new DS();
+    const cw = 20;
     const ch = [20, 30, 40];
     ds.getCwds(cw).concatCellHeights(ch);
     expect(ds[cw].cellHeights)
@@ -17,6 +17,9 @@ test('push cell height', () => {
 });
 
 test('new cnds', () => {
+    const ds = new DS();
+    const cw = 20;
+    const cn = 2;
     ds.getCwds(cw).getCnds(cn);
     expect(ds[cw][cn].itemIndexMatrix)
         .toEqual([...Array(cn)].map(() => []));
@@ -25,6 +28,9 @@ test('new cnds', () => {
 });
 
 test('concat item and push offset bottom', () => {
+    const ds = new DS();
+    const cw = 20;
+    const cn = 2;
     ds.getCwds(cw).getCnds(cn).concatItemIndex(0);
     ds.getCwds(cw).getCnds(cn).concatOffsetBottom(20);
     ds.getCwds(cw).getCnds(cn).concatItemIndex(1);
@@ -57,16 +63,35 @@ test('concat item and push offset bottom', () => {
         .toEqual(20);
 });
 
-// let cellArrangementDS = {
-//     20: { // ColumnWidthDS
+test('follow cell height', () => {
+    const ds = new DS();
+    const cw = 20;
+    const cn = 2;
+    const chnew = [20, 30, 40];
+    ds.getCwds(cw).concatCellHeights(chnew);
+    ds.getCwds(cw).getCnds(cn).followCellHeights(ds.getCwds(cw).cellHeights);
+    expect(ds[cw][cn].offsetBottomMatrix)
+        .toEqual([[20, 40], [30]]);
+    expect(ds[cw][cn].itemIndexMatrix)
+        .toEqual([[0, 2], [1]]);
+});
+
+// This is a data structure stores masonry layout information.
+// 1. itemIndexMatrix tells masonry layout arrangement
+//     to display which item in which cell. This is the most important
+//     property in this data structure.
+// 2. cellHeight and offsetBottomMatrix is for positioning new cubes.
+// let masonryDS = {
+//     20: {                  // ColumnWidthDS(Cwds)
 //         cellHeights: [],
-//         2: { // ColumnNoDS
+//         2: {                   // ColumnNoDS(Cnds)
 //             itemIndexMatrix: [[], []],
 //             offsetBottomMatrix: [[], []],
 //         },
-//         3: {}, // ColumnNoDS
-//         getCnds: (cn)=>{}
+//         3: {},                 // ColumnNoDS(Cnds)
+//         getCnds: (columnNo)=>{},
 //     },
 //     30 : {},
 //
-//     getCwds: (wiw)=>{},
+//     getCwds: (columnWidth)=>{},
+// };
