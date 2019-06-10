@@ -7,7 +7,7 @@ test('new cwds', () => {
     expect(ds[cw].cellHeights).toEqual([]);
 });
 
-test('push cell height', () => {
+test('push estimated cell height', () => {
     const ds = new DS();
     const cw = 20;
     const ch = [20, 30, 40];
@@ -27,7 +27,7 @@ test('new cnds', () => {
         .toEqual(-1);
 });
 
-test('concat item and push offset bottom', () => {
+test('concat item and push estimated offset bottom', () => {
     const ds = new DS();
     const cw = 20;
     const cn = 2;
@@ -71,27 +71,21 @@ test('follow cell height', () => {
     ds.getCwds(cw).concatCellHeights(chnew);
     ds.getCwds(cw).getCnds(cn).followCellHeights(ds.getCwds(cw).cellHeights);
     expect(ds[cw][cn].offsetBottomMatrix)
-        .toEqual([[20, 40], [30]]);
+        .toEqual([[20, 60], [30]]);
     expect(ds[cw][cn].itemIndexMatrix)
         .toEqual([[0, 2], [1]]);
 });
 
-// This is a data structure stores masonry layout information.
-// 1. itemIndexMatrix tells masonry layout arrangement
-//     to display which item in which cell. This is the most important
-//     property in this data structure.
-// 2. cellHeight and offsetBottomMatrix is for positioning new cubes.
-// let masonryDS = {
-//     20: {                  // ColumnWidthDS(Cwds)
-//         cellHeights: [],
-//         2: {                   // ColumnNoDS(Cnds)
-//             itemIndexMatrix: [[], []],
-//             offsetBottomMatrix: [[], []],
-//         },
-//         3: {},                 // ColumnNoDS(Cnds)
-//         getCnds: (columnNo)=>{},
-//     },
-//     30 : {},
-//
-//     getCwds: (columnWidth)=>{},
-// };
+test('set real column height', () => {
+    const ds = new DS();
+    const cw = 20;
+    const cn = 2;
+    const chnew = [20, 30, 40];
+    ds.getCwds(cw).concatCellHeights(chnew);
+    ds.getCwds(cw).getCnds(cn).followCellHeights(ds.getCwds(cw).cellHeights);
+    ds.getCwds(cw).getCnds(cn).setColumnHeights([70, 30]);
+    expect(ds[cw][cn].offsetBottomMatrix)
+        .toEqual([[20, 70], [30]]);
+    expect(ds[cw][cn].itemIndexMatrix)
+        .toEqual([[0, 2], [1]]);
+});

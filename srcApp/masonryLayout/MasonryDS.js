@@ -20,6 +20,14 @@ import '../utility/tail';
 //
 //     getCwds: (columnWidth)=>{},
 // };
+//
+// Usage:
+// Service worker concat estimated cellHeights.
+// ds.getCwds(cw).concatCellHeights([20, 30, 40]);
+// Global state update itemIndexMatrix and offsetBottomMatrix according to estimated cellHeights.
+// ds.getCwds(cw).getCnds(cn).followCellHeights(ds.getCwds(cw).cellHeights);
+// MasonryLayout update real columnHeights
+// ds.getCwds(cw).getCnds(cn).setColumnHeights([60, 30]);
 
 class MasonryDS {
     getCwds = (columnWidth) => {
@@ -66,6 +74,14 @@ class ColumnNoDS {
         }); // 空数组返回0
     };
 
+    setColumnHeights = (columnHeights) => {
+        this.offsetBottomMatrix.map((arr, idx) => {
+            if (arr.tail() !== undefined) {
+                arr[arr.length - 1] = columnHeights[idx];
+            }
+        })
+    };
+
     getShortestColumnHeight = () => {
         return Math.min(...this.getColumnHeights());
     };
@@ -101,12 +117,9 @@ class ColumnNoDS {
         let chl = cellHeights.length; // cell heights length
         while (++lcii < chl) {
             this.concatItemIndex(lcii);
-            this.concatOffsetBottom(cellHeights[lcii]);
+            this.concatOffsetBottom(this.getShortestColumnHeight() + cellHeights[lcii]);
         }
     };
-
-    // todo:
-    updateColumnHeights = () => {};
 
     // todo: 重新render之后自动滚动到之前的位置。
     getSmallestItemIndexInViewport = (scrollHeight) => {
