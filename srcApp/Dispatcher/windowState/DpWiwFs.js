@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
-export const ContextWiw = React.createContext(window.innerWidth); // px. window inner width context
-export const ContextFs = React.createContext(
+export const CtxWiw = React.createContext(window.innerWidth); // px. window inner width context
+export const CtxFs = React.createContext(
     parseFloat(window.getComputedStyle(document.body).fontSize) // px. font size context
 );
 
@@ -10,7 +10,7 @@ export const DEBOUNDING_TIMEOUT = 500;
 // Debouncing timer id
 let debouncingTimer = -1;
 
-const GlobalState = ({children}) => {
+const DpWiwFs = ({children}) => {
     // window inner width state
     const [wiw, setWiw] = useState(window.innerWidth);
     // font size state
@@ -42,12 +42,12 @@ const GlobalState = ({children}) => {
     }, []);
 
     return (
-        <ContextWiw.Provider value={wiw}>
-            <ContextFs.Provider value={fs}>
+        <CtxWiw.Provider value={wiw}>
+            <CtxFs.Provider value={fs}>
                 {children}
-            </ContextFs.Provider>
-        </ContextWiw.Provider>
+            </CtxFs.Provider>
+        </CtxWiw.Provider>
     )
 };
 
-export default GlobalState;
+export default DpWiwFs;

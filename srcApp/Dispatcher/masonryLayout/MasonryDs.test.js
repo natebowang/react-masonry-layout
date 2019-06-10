@@ -1,4 +1,4 @@
-import DS from './MasonryDS';
+import DS from './MasonryDs';
 
 test('new cwds', () => {
     const ds = new DS();

@@ -1,20 +1,12 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import {act} from 'react-dom/test-utils';
-import GlobalState, {DEBOUNDING_TIMEOUT, ContextFs, ContextWiw} from './GlobalState';
-
-// getFirstLabelByInnerHTML will get this element if the pattern is /Window Inner Width: */
-// <label>
-//    {'Window Inner Width: '}
-//    <span>{wiw.toString()}</span>
-// </label>
-const getFirstLabelByInnerHTMLPattern = pattern => {
-    return Array.from(document.querySelectorAll('label')).find(el => pattern.test(el.innerHTML));
-};
+import DpWiwFs, {DEBOUNDING_TIMEOUT, CtxFs, CtxWiw} from './DpWiwFs';
+import getFirstLabelByInnerHTMLPattern from '../../utility/getFirstLabelByInnerHTMLPattern'
 
 const MockChildren = () => {
-    const wiw = React.useContext(ContextWiw); // Window inner width
-    const fs = React.useContext(ContextFs); // Font size
+    const wiw = React.useContext(CtxWiw); // Window inner width
+    const fs = React.useContext(CtxFs); // Font size
 
     return (
         <>
@@ -39,7 +31,7 @@ describe('GlobalState Component', () => {
         window.innerWidth = 500;
         act(() => {
             ReactDom.render(
-                <GlobalState><MockChildren/></GlobalState>
+                <DpWiwFs><MockChildren/></DpWiwFs>
                 , container);
         });
         let elementFs = getFirstLabelByInnerHTMLPattern(/font size/i).lastChild;

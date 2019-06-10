@@ -1,0 +1,10 @@
+// getFirstLabelByInnerHTMLPattern will get this element
+// if the pattern is /Window Inner Width: */
+// <label>
+//    {'Window Inner Width: '}
+//    <span>{wiw.toString()}</span>
+// </label>
+const getFirstLabelByInnerHTMLPattern = pattern => {
+    return Array.from(document.querySelectorAll('label')).find(el => pattern.test(el.innerHTML));
+};
+export default getFirstLabelByInnerHTMLPattern;

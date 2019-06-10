@@ -1,26 +1,6 @@
-import binarySearch from "../utility/binarySearch";
-import '../utility/tail';
+import binarySearch from "../../utility/binarySearch";
+import '../../utility/tail';
 
-// This is a data structure stores masonry layout information.
-// 1. itemIndexMatrix tells masonry layout arrangement
-//     to display which item in which cell. This is the most important
-//     property in this data structure.
-// 2. cellHeight and offsetBottomMatrix is for positioning new cubes.
-// let masonryDS = {
-//     20: {                  // ColumnWidthDS(Cwds)
-//         cellHeights: [],
-//         2: {                   // ColumnNoDS(Cnds)
-//             itemIndexMatrix: [[], []],
-//             offsetBottomMatrix: [[], []],
-//         },
-//         3: {},                 // ColumnNoDS(Cnds)
-//         getCnds: (columnNo)=>{},
-//     },
-//     30 : {},
-//
-//     getCwds: (columnWidth)=>{},
-// };
-//
 // Usage:
 // Service worker concat estimated cellHeights.
 // ds.getCwds(cw).concatCellHeights([20, 30, 40]);
@@ -28,24 +8,45 @@ import '../utility/tail';
 // ds.getCwds(cw).getCnds(cn).followCellHeights(ds.getCwds(cw).cellHeights);
 // MasonryLayout update real columnHeights
 // ds.getCwds(cw).getCnds(cn).setColumnHeights([60, 30]);
+//
+// This is a data structure stores masonry layout information.
+// 1. itemIndexMatrix tells masonry layout arrangement
+//     to display which item in which cell. This is the most important
+//     property in this data structure.
+// 2. cellHeight and offsetBottomMatrix is for positioning new cubes.
+// let masonryDs = {
+//     20: {                  // ColumnWidthDs(Cwds)
+//         cellHeights: [],
+//         2: {                   // ColumnNoDs(Cnds)
+//             itemIndexMatrix: [[], []],
+//             offsetBottomMatrix: [[], []],
+//         },
+//         3: {},                 // ColumnNoDs(Cnds)
+//         getCnds: (columnNo)=>{},
+//     },
+//     30 : {},
+//
+//     getCwds: (columnWidth)=>{},
+// };
 
-class MasonryDS {
+class MasonryDs {
     getCwds = (columnWidth) => {
         if (this[columnWidth] === undefined) {
-            this[columnWidth] = new ColumnWidthDS();
+            this[columnWidth] = new ColumnWidthDs();
         }
         return this[columnWidth];
     };
 }
+export default MasonryDs;
 
-class ColumnWidthDS {
+class ColumnWidthDs {
     constructor() {
         this.cellHeights = [];
     }
 
     getCnds = (columnNo) => {
         if (this[columnNo] === undefined) {
-            this[columnNo] = new ColumnNoDS(columnNo);
+            this[columnNo] = new ColumnNoDs(columnNo);
         }
         return this[columnNo];
     };
@@ -55,7 +56,7 @@ class ColumnWidthDS {
     };
 }
 
-class ColumnNoDS {
+class ColumnNoDs {
     constructor(columnNo) {
         // 二维数组，存的是每列包含的那部分xs的indexInAllXs，所有操作必须immutable
         this.itemIndexMatrix = [...Array(columnNo)].map(() => []);
@@ -171,4 +172,3 @@ class ColumnNoDS {
     };
 }
 
-export default MasonryDS;
