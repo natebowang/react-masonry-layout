@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import {act} from 'react-dom/test-utils';
-import DpWiwFs, {DEBOUNDING_TIMEOUT, CtxFs, CtxWiw} from './DpWiwFs';
-import getFirstLabelByInnerHTMLPattern from '../../utility/getFirstLabelByInnerHTMLPattern'
+import WindowResize, {DEBOUNDING_TIMEOUT, CtxFs, CtxWiw} from './WindowResize';
+import getFirstLabelByInnerHTMLPattern from '../utility/getFirstLabelByInnerHTMLPattern'
 
 const MockChildren = () => {
     const wiw = React.useContext(CtxWiw); // Window inner width
@@ -31,7 +31,7 @@ describe('GlobalState Component', () => {
         window.innerWidth = 500;
         act(() => {
             ReactDom.render(
-                <DpWiwFs><MockChildren/></DpWiwFs>
+                <WindowResize><MockChildren/></WindowResize>
                 , container);
         });
         let elementFs = getFirstLabelByInnerHTMLPattern(/font size/i).lastChild;

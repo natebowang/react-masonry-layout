@@ -1,52 +1,52 @@
-import binarySearch from "../../utility/binarySearch";
-import '../../utility/tail';
+import binarySearch from "../utility/binarySearch";
+import '../utility/tail';
+
+export default new MatrixCache();
 
 // Usage:
 // Service worker concat estimated cellHeights.
-// ds.getCwds(cw).concatCellHeights([20, 30, 40]);
-// Global state update itemIndexMatrix and offsetBottomMatrix according to estimated cellHeights.
-// ds.getCwds(cw).getCnds(cn).followCellHeights(ds.getCwds(cw).cellHeights);
+// ms.getCwCache(cw).concatCellHeights([20, 30, 40]);
+// Update itemIndexMatrix and offsetBottomMatrix according to estimated cellHeights.
+// ms.getCwCache(cw).getCnCache(cn).followCellHeights(ms.getCwCache(cw).cellHeights);
 // MasonryLayout update real columnHeights
-// ds.getCwds(cw).getCnds(cn).setColumnHeights([60, 30]);
+// ms.getCwCache(cw).getCnCache(cn).setColumnHeights([60, 30]);
 //
-// This is a data structure stores masonry layout information.
+// This is a data structure caches matrices.
 // 1. itemIndexMatrix tells masonry layout arrangement
 //     to display which item in which cell. This is the most important
 //     property in this data structure.
 // 2. cellHeight and offsetBottomMatrix is for positioning new cubes.
-// let masonryDs = {
-//     20: {                  // ColumnWidthDs(Cwds)
+// let matrixCache = {
+//     20: {                  // ColumnWidthCache(CwS)
 //         cellHeights: [],
-//         2: {                   // ColumnNoDs(Cnds)
+//         2: {                   // ColumnNoCache(CnS)
 //             itemIndexMatrix: [[], []],
 //             offsetBottomMatrix: [[], []],
 //         },
-//         3: {},                 // ColumnNoDs(Cnds)
-//         getCnds: (columnNo)=>{},
+//         3: {},                 // ColumnNoCache(CnS)
+//         getCnCache: (columnNo)=>{},
 //     },
 //     30 : {},
 //
-//     getCwds: (columnWidth)=>{},
+//     getCwCache: (columnWidth)=>{},
 // };
-
-class MasonryDs {
-    getCwds = (columnWidth) => {
+export class MatrixCache {
+    getCwCache = (columnWidth) => {
         if (this[columnWidth] === undefined) {
-            this[columnWidth] = new ColumnWidthDs();
+            this[columnWidth] = new ColumnWidthCache();
         }
         return this[columnWidth];
     };
 }
-export default MasonryDs;
 
-class ColumnWidthDs {
+class ColumnWidthCache {
     constructor() {
         this.cellHeights = [];
     }
 
-    getCnds = (columnNo) => {
+    getCnCache = (columnNo) => {
         if (this[columnNo] === undefined) {
-            this[columnNo] = new ColumnNoDs(columnNo);
+            this[columnNo] = new ColumnNoCache(columnNo);
         }
         return this[columnNo];
     };
@@ -56,12 +56,12 @@ class ColumnWidthDs {
     };
 }
 
-class ColumnNoDs {
+class ColumnNoCache {
     constructor(columnNo) {
         // 二维数组，存的是每列包含的那部分xs的indexInAllXs，所有操作必须immutable
         this.itemIndexMatrix = [...Array(columnNo)].map(() => []);
         // 二维数组，存的是每列包含的那部分xs的offsetBottom，这块存bottom而不是top的原因是，上一个的bottom就是下一个的top，
-        // 如果存的是top，只能从cwds里取cellHeight再相加，太麻烦。
+        // 如果存的是top，只能从cwS里取cellHeight再相加，太麻烦。
         // 这两个二维数组分开存放，而不是一个数组，每个元素是一个object的原因是，
         // 只有itemIndexMatrix传给children了，而offsetBottomMatrix不需要传下去。
         this.offsetBottomMatrix = [...Array(columnNo)].map(() => []);

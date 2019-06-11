@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import {act} from 'react-dom/test-utils';
-import DpMasonryDs, {CtxItemIndexMatrix} from './DpMasonryDs';
-import getFirstLabelByInnerHTMLPattern from '../../utility/getFirstLabelByInnerHTMLPattern'
+import MasonryReducer, {CtxItemIndexMatrix} from './masonryReducer';
+import getFirstLabelByInnerHTMLPattern from '../utility/getFirstLabelByInnerHTMLPattern'
 
 const MockChildren = () => {
     const itemIndexMatrix = React.useContext(CtxItemIndexMatrix);

@@ -1,4 +1,4 @@
-const binarySearch = (arr, target) => {
+export default (arr, target) => {
     let left = 0;
     let right = arr.length - 1;
     while (left <= right) {
@@ -14,7 +14,6 @@ const binarySearch = (arr, target) => {
     }
     return -1;
 };
-export default binarySearch;
 
 export const binarySearchDefaultSmaller = (arr, target) => {
     let left = 0;

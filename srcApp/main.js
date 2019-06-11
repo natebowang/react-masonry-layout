@@ -1,11 +1,18 @@
 import 'normalize.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Store from './store/Store';
+import rootReducer from './reducer/rootReducer';
+import WindowResize from "./view/WindowResize";
 // 2st option for service worker
 // import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 
 const Main = () => (
-    <div>Hello React!</div>
+    <Store reducer={rootReducer}>
+        <WindowResize>
+            <div>Hello</div>
+        </WindowResize>
+    </Store>
 );
 
 ReactDOM.render(<Main/>, document.getElementById('root'));

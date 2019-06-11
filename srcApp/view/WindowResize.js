@@ -1,25 +1,21 @@
-import React, {useState, useEffect} from 'react';
-
-export const CtxWiw = React.createContext(window.innerWidth); // px. window inner width context
-export const CtxFs = React.createContext(
-    parseFloat(window.getComputedStyle(document.body).fontSize) // px. font size context
-);
+import React, {useContext, useEffect} from 'react';
+import {Ctx} from '../store/Store';
 
 // Handle event after this timer, that is set state, and trigger rerender
 export const DEBOUNDING_TIMEOUT = 500;
 // Debouncing timer id
 let debouncingTimer = -1;
 
-const DpWiwFs = ({children}) => {
-    // window inner width state
-    const [wiw, setWiw] = useState(window.innerWidth);
-    // font size state
-    const [fs, setFs] = useState(parseFloat(window.getComputedStyle(document.body).fontSize));
+export default ({children}) => {
+    const {dispatch} = useContext(Ctx);
 
     const handleEventDone = () => {
-        console.debug('setWiw and setFs');
-        setWiw(window.innerWidth);
-        setFs(parseFloat(window.getComputedStyle(document.body).fontSize));
+        console.debug('Window Resize');
+        dispatch({
+            type: 'windowResize',
+            wiw: window.innerWidth,
+            fs: parseFloat(window.getComputedStyle(document.body).fontSize),
+        });
     };
     const windowEventHandler = (e) => {
         e.preventDefault();
@@ -41,13 +37,6 @@ const DpWiwFs = ({children}) => {
         };
     }, []);
 
-    return (
-        <CtxWiw.Provider value={wiw}>
-            <CtxFs.Provider value={fs}>
-                {children}
-            </CtxFs.Provider>
-        </CtxWiw.Provider>
-    )
+    return {children};
 };
 
-export default DpWiwFs;

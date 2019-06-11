@@ -1,3 +1,3 @@
 import React, {useState, useEffect} from 'react';
 
-export const DpItems = React.createContext();
+export const ItemsReducer = React.createContext();
