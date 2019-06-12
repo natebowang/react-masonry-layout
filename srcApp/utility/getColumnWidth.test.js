@@ -1,6 +1,5 @@
 import getColumnWidth from './getColumnWidth';
-
-const round2 = (num) => Math.round(num * 100) / 100;
+import {round2} from "./math";
 
 test('Calculate column width from different font size and window inner width', () => {
     expect(round2(getColumnWidth(16, 500))).toBe(29.25);
