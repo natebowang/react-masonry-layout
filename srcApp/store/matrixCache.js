@@ -36,6 +36,7 @@ export class MatrixCache {
         return this[columnWidth];
     };
 }
+
 export default new MatrixCache();
 
 class ColumnWidthCache {
@@ -52,6 +53,10 @@ class ColumnWidthCache {
 
     concatCellHeights = (cellHeights) => { // Immutable, cellHeights is an Array
         this.cellHeights = this.cellHeights.concat(cellHeights);
+    };
+
+    followItems = (items) => {
+
     };
 }
 
