@@ -1,8 +1,6 @@
 import binarySearch from "../utility/binarySearch";
 import '../utility/tail';
 
-export default new MatrixCache();
-
 // Usage:
 // Service worker concat estimated cellHeights.
 // ms.getCwCache(cw).concatCellHeights([20, 30, 40]);
@@ -38,6 +36,7 @@ export class MatrixCache {
         return this[columnWidth];
     };
 }
+export default new MatrixCache();
 
 class ColumnWidthCache {
     constructor() {
