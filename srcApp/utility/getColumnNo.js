@@ -1,3 +1,7 @@
+import {HALF_GAP} from '../config';
+import {MIN_COLUMN_NO} from '../config';
+import getColumnWidth from './getColumnWidth';
+
 export default (fs, wiw) => {
     let completeColumnNo = Math.floor((wiw - 2 * HALF_GAP * fs)
         / (getColumnWidth(fs, wiw) * fs));
