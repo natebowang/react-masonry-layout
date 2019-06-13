@@ -15,13 +15,13 @@ import '../utility/tail';
 //     property in this data structure.
 // 2. cellHeight and offsetBottomMatrix is for positioning new cubes.
 // let matrixCache = {
-//     20: {                  // ColumnWidthCache(CwS)
+//     20: {                  // ColumnWidthCache(CwC)
 //         cellHeights: [],
-//         2: {                   // ColumnNoCache(CnS)
+//         2: {                   // ColumnNoCache(CnC)
 //             itemIndexMatrix: [[], []],
 //             offsetBottomMatrix: [[], []],
 //         },
-//         3: {},                 // ColumnNoCache(CnS)
+//         3: {},                 // ColumnNoCache(CnC)
 //         getCnCache: (columnNo)=>{},
 //     },
 //     30 : {},
@@ -34,6 +34,23 @@ export class MatrixCache {
             this[columnWidth] = new ColumnWidthCache();
         }
         return this[columnWidth];
+    };
+    // Keep cwC and cnC, but reinitialize cellHeights, itemIndexMatrix, offsetBottomMatrix
+    // When user search another keyword, cellHeights, itemIndexMatrix, offsetBottomMatrix
+    // are related to items, so they need to be clear.
+    // But cwC and cnC are related to window, so they could leave.
+    clearCache = () => {
+        for (let cw in this) {
+            if (this[cw].hasOwnProperty('cellHeights')) {
+                this[cw].cellHeights = [];
+                for (let cn in this[cw]) {
+                    if (this[cw][cn].hasOwnProperty('itemIndexMatrix')) {
+                        this[cw][cn].itemIndexMatrix = [...Array(parseInt(cn))].map(() => []);
+                        this[cw][cn].offsetBottomMatrix = [...Array(parseInt(cn))].map(() => []);
+                    }
+                }
+            }
+        }
     };
 }
 
@@ -54,7 +71,7 @@ class ColumnWidthCache {
     concatCellHeights = (cellHeights) => { // Immutable, cellHeights is an Array
         this.cellHeights = this.cellHeights.concat(cellHeights);
     };
-
+    // todo
     followItems = (items) => {
 
     };

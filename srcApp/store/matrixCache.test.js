@@ -1,13 +1,13 @@
 import {MatrixCache} from './matrixCache';
 
-test('new cwS', () => {
+test('New cwS', () => {
     const ms = new MatrixCache();
     const cw = 20;
     ms.getCwCache(cw);
     expect(ms[cw].cellHeights).toEqual([]);
 });
 
-test('push estimated cell height', () => {
+test('Push estimated cell height', () => {
     const ms = new MatrixCache();
     const cw = 20;
     const ch = [20, 30, 40];
@@ -16,7 +16,7 @@ test('push estimated cell height', () => {
         .toEqual(ch);
 });
 
-test('new cnS', () => {
+test('New cnS', () => {
     const ms = new MatrixCache();
     const cw = 20;
     const cn = 2;
@@ -27,7 +27,7 @@ test('new cnS', () => {
         .toEqual(-1);
 });
 
-test('concat item and push estimated offset bottom', () => {
+test('Concat item and push estimated offset bottom', () => {
     const ms = new MatrixCache();
     const cw = 20;
     const cn = 2;
@@ -63,7 +63,7 @@ test('concat item and push estimated offset bottom', () => {
         .toEqual(20);
 });
 
-test('follow cell height', () => {
+test('Follow cell height', () => {
     const ms = new MatrixCache();
     const cw = 20;
     const cn = 2;
@@ -76,7 +76,7 @@ test('follow cell height', () => {
         .toEqual([[0, 2], [1]]);
 });
 
-test('set real column height', () => {
+test('Set real column height', () => {
     const ms = new MatrixCache();
     const cw = 20;
     const cn = 2;
@@ -88,4 +88,18 @@ test('set real column height', () => {
         .toEqual([[20, 70], [30]]);
     expect(ms[cw][cn].itemIndexMatrix)
         .toEqual([[0, 2], [1]]);
+});
+
+test('Clear cache', () => {
+    const ms = new MatrixCache();
+    const cw = 20;
+    const cn = 2;
+    const chnew = [20, 30, 40];
+    ms.getCwCache(cw).concatCellHeights(chnew);
+    ms.getCwCache(cw).getCnCache(cn).followCellHeights(ms.getCwCache(cw).cellHeights);
+    ms.clearCache();
+    expect(ms[cw][cn].offsetBottomMatrix)
+        .toEqual([[], []]);
+    expect(ms[cw][cn].itemIndexMatrix)
+        .toEqual([[], []]);
 });
