@@ -6,7 +6,7 @@ export const DEBOUNDING_TIMEOUT = 500;
 // Debouncing timer id
 let debouncingTimer = -1;
 
-export default ({children}) => {
+const WindowResize = ({children}) => {
     const {dispatch} = useContext(Ctx);
 
     const handleEventDone = () => {
@@ -32,11 +32,21 @@ export default ({children}) => {
 
     useEffect(() => {
         ['resize'].forEach(e => window.addEventListener(e, windowEventHandler));
+        dispatch({
+            type: 'windowResize',
+            wiw: window.innerWidth,
+            fs: parseFloat(window.getComputedStyle(document.body).fontSize),
+        });
         return () => {
             ['resize'].forEach(e => window.removeEventListener(e, windowEventHandler));
         };
     }, []);
 
-    return {children};
+    return (
+        <>
+            {children}
+        </>
+    );
 };
 
+export default WindowResize;

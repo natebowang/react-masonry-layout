@@ -4,7 +4,7 @@ import mockItemsFactory from "./mockItemsFactory";
 
 export const Ctx = createContext();
 
-export default ({children, reducer}) => {
+const Store = ({children, reducer}) => {
     const [store, dispatch] = useReducer(reducer, new InitStore());
 
     return (
@@ -13,6 +13,7 @@ export default ({children, reducer}) => {
         </Ctx.Provider>
     )
 };
+export default Store;
 
 class InitStore {
     constructor() {
