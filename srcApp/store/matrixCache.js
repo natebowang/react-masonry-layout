@@ -1,5 +1,6 @@
 import binarySearch from "../utility/binarySearch";
 import '../utility/tail';
+import getItemHeight from "../postApiAdaptor/getItemHeight";
 
 // Usage:
 // Service worker concat estimated cellHeights.
@@ -29,6 +30,7 @@ import '../utility/tail';
 //     getCwCache: (columnWidth)=>{},
 // };
 export class MatrixCache {
+    // Factory method plus singleton
     getCwCache = (columnWidth) => {
         if (this[columnWidth] === undefined) {
             this[columnWidth] = new ColumnWidthCache();
@@ -61,6 +63,7 @@ class ColumnWidthCache {
         this.cellHeights = [];
     }
 
+    // Factory method plus singleton
     getCnCache = (columnNo) => {
         if (this[columnNo] === undefined) {
             this[columnNo] = new ColumnNoCache(columnNo);
@@ -71,9 +74,13 @@ class ColumnWidthCache {
     concatCellHeights = (cellHeights) => { // Immutable, cellHeights is an Array
         this.cellHeights = this.cellHeights.concat(cellHeights);
     };
-    // todo
-    followItems = (items) => {
 
+    followItems = (items, columnWidth) => {
+        let lchi = this.cellHeights.length-1; // last cell heights index
+        let il = items.length; // array items length
+        while (++lchi < il) {
+            this.concatCellHeights(getItemHeight(items[lchi], columnWidth));
+        }
     };
 }
 
@@ -113,7 +120,7 @@ class ColumnNoCache {
             this.getShortestColumnHeight()); // 空矩阵返回0
     };
 
-    getLastCellsItemIndex = () => {
+    getLastItemIndexFromMatrix = () => {
         let columnNo = this.itemIndexMatrix.length;
         let lastCellsItemIndices = Array(columnNo).fill().map((el, idx) => {
             let tmp = this.itemIndexMatrix[idx].tail();
@@ -135,7 +142,7 @@ class ColumnNoCache {
     };
 
     followCellHeights = (cellHeights) => {
-        let lcii = this.getLastCellsItemIndex(); // last cell's item index
+        let lcii = this.getLastItemIndexFromMatrix(); // last cell's item index
         let chl = cellHeights.length; // cell heights length
         while (++lcii < chl) {
             this.concatItemIndex(lcii);
@@ -166,7 +173,7 @@ class ColumnNoCache {
             .map((offsetBottomArray) => binarySearchSpecial(offsetBottomArray, scrollHeight))
             .map((el, idx) => {
                 let tmp = this.itemIndexMatrix[idx][el];
-                return tmp === undefined ? this.getLastCellsItemIndex() : tmp;
+                return tmp === undefined ? this.getLastItemIndexFromMatrix() : tmp;
             }); // 空数组返回-1
 
         // console.debug(topItemIndicesInViewport);

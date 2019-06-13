@@ -3,8 +3,7 @@ import React, {useRef, useEffect, memo} from 'react';
 // MasonryLayout跟CellArrangement的耦合度很高，需要引入参数和方法
 import {itemIndexUnderUpdating, setItemIndexUnderUpdating} from "./MasonryArrangement";
 import Item from "./Item";
-
-export const HALF_GAP = 1; // rem
+import {HALF_GAP} from '../config'; // rem
 
 const Table = memo(({
                         matrix, columnWidth,

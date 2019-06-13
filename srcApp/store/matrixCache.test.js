@@ -1,105 +1,123 @@
 import {MatrixCache} from './matrixCache';
+import mockItemsFactory from "./mockItemsFactory";
+import * as dep from "../postApiAdaptor/getItemHeight";
 
-test('New cwS', () => {
-    const ms = new MatrixCache();
+jest.mock('../postApiAdaptor/getItemHeight', () => (
+    {
+        __esModule: true,
+        default: () => 3,
+    }
+));
+
+test('New cwC', () => {
+    const mc = new MatrixCache();
     const cw = 20;
-    ms.getCwCache(cw);
-    expect(ms[cw].cellHeights).toEqual([]);
+    mc.getCwCache(cw);
+    expect(mc[cw].cellHeights).toEqual([]);
 });
 
 test('Push estimated cell height', () => {
-    const ms = new MatrixCache();
+    const mc = new MatrixCache();
     const cw = 20;
     const ch = [20, 30, 40];
-    ms.getCwCache(cw).concatCellHeights(ch);
-    expect(ms[cw].cellHeights)
+    mc.getCwCache(cw).concatCellHeights(ch);
+    expect(mc[cw].cellHeights)
         .toEqual(ch);
 });
 
-test('New cnS', () => {
-    const ms = new MatrixCache();
+test('New cnC', () => {
+    const mc = new MatrixCache();
     const cw = 20;
     const cn = 2;
-    ms.getCwCache(cw).getCnCache(cn);
-    expect(ms[cw][cn].itemIndexMatrix)
+    mc.getCwCache(cw).getCnCache(cn);
+    expect(mc[cw][cn].itemIndexMatrix)
         .toEqual([...Array(cn)].map(() => []));
-    expect(ms[cw][cn].getLastCellsItemIndex())
+    expect(mc[cw][cn].getLastItemIndexFromMatrix())
         .toEqual(-1);
 });
 
 test('Concat item and push estimated offset bottom', () => {
-    const ms = new MatrixCache();
+    const mc = new MatrixCache();
     const cw = 20;
     const cn = 2;
-    ms.getCwCache(cw).getCnCache(cn).concatItemIndex(0);
-    ms.getCwCache(cw).getCnCache(cn).concatOffsetBottom(20);
-    ms.getCwCache(cw).getCnCache(cn).concatItemIndex(1);
-    ms.getCwCache(cw).getCnCache(cn).concatOffsetBottom(30);
-    ms.getCwCache(cw).getCnCache(cn).concatItemIndex(2);
-    ms.getCwCache(cw).getCnCache(cn).concatOffsetBottom(40);
-    expect(ms[cw][cn].offsetBottomMatrix)
+    mc.getCwCache(cw).getCnCache(cn).concatItemIndex(0);
+    mc.getCwCache(cw).getCnCache(cn).concatOffsetBottom(20);
+    mc.getCwCache(cw).getCnCache(cn).concatItemIndex(1);
+    mc.getCwCache(cw).getCnCache(cn).concatOffsetBottom(30);
+    mc.getCwCache(cw).getCnCache(cn).concatItemIndex(2);
+    mc.getCwCache(cw).getCnCache(cn).concatOffsetBottom(40);
+    expect(mc[cw][cn].offsetBottomMatrix)
         .toEqual([[20, 40], [30]]);
-    expect(ms[cw][cn].itemIndexMatrix)
+    expect(mc[cw][cn].itemIndexMatrix)
         .toEqual([[0, 2], [1]]);
-    expect(ms[cw][cn].getColumnHeights())
+    expect(mc[cw][cn].getColumnHeights())
         .toEqual([40, 30]);
-    expect(ms[cw][cn].getShortestColumnHeight())
+    expect(mc[cw][cn].getShortestColumnHeight())
         .toEqual(30);
-    expect(ms[cw][cn].getShortestColumnIndex())
+    expect(mc[cw][cn].getShortestColumnIndex())
         .toEqual(1);
-    expect(ms[cw][cn].getLastCellsItemIndex())
+    expect(mc[cw][cn].getLastItemIndexFromMatrix())
         .toEqual(2);
-    expect(ms[cw][cn].getSmallestItemIndexInViewport(10))
+    expect(mc[cw][cn].getSmallestItemIndexInViewport(10))
         .toEqual(0);
-    expect(ms[cw][cn].getSmallestItemIndexInViewport(20))
+    expect(mc[cw][cn].getSmallestItemIndexInViewport(20))
         .toEqual(1);
-    expect(ms[cw][cn].getSmallestItemIndexInViewport(30))
+    expect(mc[cw][cn].getSmallestItemIndexInViewport(30))
         .toEqual(2);
-    expect(ms[cw][cn].getCellsOffsetTop(0))
+    expect(mc[cw][cn].getCellsOffsetTop(0))
         .toEqual(0);
-    expect(ms[cw][cn].getCellsOffsetTop(1))
+    expect(mc[cw][cn].getCellsOffsetTop(1))
         .toEqual(0);
-    expect(ms[cw][cn].getCellsOffsetTop(2))
+    expect(mc[cw][cn].getCellsOffsetTop(2))
         .toEqual(20);
 });
 
-test('Follow cell height', () => {
-    const ms = new MatrixCache();
+test('itemIndexMatrix and offsetBottomMatrix follows cellHeights', () => {
+    const mc = new MatrixCache();
     const cw = 20;
     const cn = 2;
     const chnew = [20, 30, 40];
-    ms.getCwCache(cw).concatCellHeights(chnew);
-    ms.getCwCache(cw).getCnCache(cn).followCellHeights(ms.getCwCache(cw).cellHeights);
-    expect(ms[cw][cn].offsetBottomMatrix)
+    mc.getCwCache(cw).concatCellHeights(chnew);
+    mc.getCwCache(cw).getCnCache(cn).followCellHeights(mc.getCwCache(cw).cellHeights);
+    expect(mc[cw][cn].offsetBottomMatrix)
         .toEqual([[20, 60], [30]]);
-    expect(ms[cw][cn].itemIndexMatrix)
+    expect(mc[cw][cn].itemIndexMatrix)
         .toEqual([[0, 2], [1]]);
 });
 
 test('Set real column height', () => {
-    const ms = new MatrixCache();
+    const mc = new MatrixCache();
     const cw = 20;
     const cn = 2;
     const chnew = [20, 30, 40];
-    ms.getCwCache(cw).concatCellHeights(chnew);
-    ms.getCwCache(cw).getCnCache(cn).followCellHeights(ms.getCwCache(cw).cellHeights);
-    ms.getCwCache(cw).getCnCache(cn).setColumnHeights([70, 30]);
-    expect(ms[cw][cn].offsetBottomMatrix)
+    mc.getCwCache(cw).concatCellHeights(chnew);
+    mc.getCwCache(cw).getCnCache(cn).followCellHeights(mc.getCwCache(cw).cellHeights);
+    mc.getCwCache(cw).getCnCache(cn).setColumnHeights([70, 30]);
+    expect(mc[cw][cn].offsetBottomMatrix)
         .toEqual([[20, 70], [30]]);
-    expect(ms[cw][cn].itemIndexMatrix)
+    expect(mc[cw][cn].itemIndexMatrix)
         .toEqual([[0, 2], [1]]);
 });
 
 test('Clear cache', () => {
-    const ms = new MatrixCache();
+    const mc = new MatrixCache();
     const cw = 20;
     const cn = 2;
     const chnew = [20, 30, 40];
-    ms.getCwCache(cw).concatCellHeights(chnew);
-    ms.getCwCache(cw).getCnCache(cn).followCellHeights(ms.getCwCache(cw).cellHeights);
-    ms.clearCache();
-    expect(ms[cw][cn].offsetBottomMatrix)
+    mc.getCwCache(cw).concatCellHeights(chnew);
+    mc.getCwCache(cw).getCnCache(cn).followCellHeights(mc.getCwCache(cw).cellHeights);
+    mc.clearCache();
+    expect(mc[cw][cn].offsetBottomMatrix)
         .toEqual([[], []]);
-    expect(ms[cw][cn].itemIndexMatrix)
+    expect(mc[cw][cn].itemIndexMatrix)
         .toEqual([[], []]);
+});
+
+test('cellHeights follows items', () => {
+    const items = mockItemsFactory(1);
+    const mc = new MatrixCache();
+    const cw = 21;
+    mc.getCwCache(cw).followItems(items);
+    expect(mc[cw].cellHeights)
+        .toEqual(Array(20).fill(3));
 });

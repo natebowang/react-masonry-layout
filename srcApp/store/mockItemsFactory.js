@@ -100,14 +100,16 @@ const itemsTemplate = [
         "content": "This is a pretty dense paper and I’ve tried to summarize it briefly without leaving out too much. The overall working is pretty straightforward: Predict what is wrong with the current estimates and correct them iteratively. To quote the authors, Instead of directly predicting the outputs in one go, they use a self-correcting model that progressively changes an initial solution by feeding back error predictions, and this process is called Iterative Error Feedback (IEF)."
     }
 ];
-const repeat = 10;
-let mockItems = [];
-for (let i = 0; i < repeat; i++) {
-    mockItems = mockItems.concat(itemsTemplate.map(
-        (ele) => ({
-            ...ele,
-            id: ele.id + i * itemsTemplate.length,
-        })
-    ));
-}
-export default mockItems;
+const mockItemsFactory = (repeat = 1) => {
+    let mockItems = [];
+    for (let i = 0; i < repeat; i++) {
+        mockItems = mockItems.concat(itemsTemplate.map(
+            (ele) => ({
+                ...ele,
+                id: ele.id + i * itemsTemplate.length,
+            })
+        ));
+    }
+    return mockItems;
+};
+export default mockItemsFactory;

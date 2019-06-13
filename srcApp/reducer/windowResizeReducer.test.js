@@ -9,6 +9,7 @@ test('Dispatch window resize event.', () => {
         columnNo: undefined,
         matrixCache: matrixCache,
         matrix: undefined,
+        items: [],
     };
     let latter = {
         fs: 16,
@@ -17,6 +18,7 @@ test('Dispatch window resize event.', () => {
         columnNo: 3,
         matrixCache: matrixCache,
         matrix: [[],[],[]],
+        items: [],
     };
     let action = {
         type: 'windowResize',

@@ -26,7 +26,7 @@ const MockChildren = () => {
 let container = document.createElement('div');
 document.body.appendChild(container);
 
-describe('GlobalState Component', () => {
+xdescribe('GlobalState Component', () => {
         window.getComputedStyle = () => ({fontSize: '16px'});
         window.innerWidth = 500;
         act(() => {
@@ -60,7 +60,7 @@ describe('GlobalState Component', () => {
     }
 );
 
-test('remove eventListener when unmount', (done) => {
+xtest('remove eventListener when unmount', (done) => {
     // eventListener有没有被remove就没法测，因为js就没提供getEventListener功能
     act(() => {
         ReactDom.unmountComponentAtNode(container);
