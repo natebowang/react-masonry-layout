@@ -1,8 +1,8 @@
 import {MatrixCache} from './matrixCache';
 import mockItemsFactory from "./mockItemsFactory";
-import dep from "../postApiAdaptor/getItemHeight";
+import dep from "../itemApiAdaptor/getItemHeight";
 
-jest.mock('../postApiAdaptor/getItemHeight', () => (()=>3));
+jest.mock('../itemApiAdaptor/getItemHeight', () => (()=>3));
 
 test('New cwC', () => {
     const mc = new MatrixCache();

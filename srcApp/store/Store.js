@@ -22,7 +22,7 @@ class InitStore {
         this.columnWidth = undefined;
         this.columnNo = undefined;
         this.matrixCache = matrixCache;
-        this.matrix = undefined;
+        this.matrix = [];
         this.items = mockItemsFactory(10); // mock
     }
 }

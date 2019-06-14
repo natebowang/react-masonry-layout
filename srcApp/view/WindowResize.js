@@ -1,13 +1,11 @@
 import React, {useContext, useEffect} from 'react';
-import {Ctx} from '../store/Store';
 
 // Handle event after this timer, that is set state, and trigger rerender
 export const DEBOUNDING_TIMEOUT = 500;
 // Debouncing timer id
 let debouncingTimer = -1;
 
-const WindowResize = ({children}) => {
-    const {dispatch} = useContext(Ctx);
+const WindowResize = ({children, dispatch}) => {
 
     const handleEventDone = () => {
         console.debug('Window Resize');

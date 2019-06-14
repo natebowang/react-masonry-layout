@@ -1,21 +1,35 @@
 import 'normalize.css';
-import React from 'react';
+import React, {useContext} from 'react';
 import ReactDOM from 'react-dom';
-import Store from './store/Store';
+import Store, {Ctx} from './store/Store';
 import rootReducer from './reducer/rootReducer';
 import WindowResize from "./view/WindowResize";
+import MasonryTable from "./view/MasonryTable";
+import renderItem from './itemApiAdaptor/renderItem';
 // 2st option for service worker
 // import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 
-const Main = () => (
-    <Store reducer={rootReducer}>
-        <WindowResize>
-            <div>Hello</div>
+// Main component also integrated connect function.
+// I have to transfer context to props to use React.memo.
+const Main = () => {
+    const {store: {matrix, columnWidth, columnNo}, dispatch}
+        = useContext(Ctx);
+    return (
+        <WindowResize dispatch={dispatch}>
+            <MasonryTable renderItem={renderItem}
+                   matrix={matrix}
+                   columnWidth={columnWidth}
+                   columnNo={columnNo}
+            />
         </WindowResize>
-    </Store>
-);
+    );
+};
 
-ReactDOM.render(<Main/>, document.getElementById('root'));
+ReactDOM.render((
+    <Store reducer={rootReducer}>
+        <Main/>
+    </Store>
+), document.getElementById('root'));
 
 // 1st option for service worker
 if ('serviceWorker' in navigator) {

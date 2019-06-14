@@ -27,17 +27,24 @@ export const MockChildren = () => {
 let container = document.createElement('div');
 document.body.appendChild(container);
 
+const MockMain = () => {
+    const {dispatch} = useContext(Ctx);
+    return (
+        <WindowResize dispatch={dispatch}>
+            <MockChildren/>
+        </WindowResize>
+    )
+};
+
 describe('GlobalState Component', () => {
         window.getComputedStyle = () => ({fontSize: '16px'});
         window.innerWidth = 500;
         act(() => {
-            ReactDom.render(
+            ReactDom.render((
                 <Store reducer={rootReducer}>
-                    <WindowResize>
-                        <MockChildren/>
-                    </WindowResize>
+                    <MockMain/>
                 </Store>
-                , container);
+            ), container);
         });
         let elementFs = getFirstLabelByInnerHTMLPattern(/font size/i).lastChild;
         let elementWiw = getFirstLabelByInnerHTMLPattern(/window inner width/i).lastChild;
