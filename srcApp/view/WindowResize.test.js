@@ -1,23 +1,24 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import ReactDom from 'react-dom';
 import {act} from 'react-dom/test-utils';
-import WindowResize, {DEBOUNDING_TIMEOUT, CtxFs, CtxWiw} from './WindowResize';
 import getFirstLabelByInnerHTMLPattern from '../utility/getFirstLabelByInnerHTMLPattern'
+import rootReducer from "../reducer/rootReducer";
+import Store, {Ctx} from '../store/Store';
+import WindowResize, {DEBOUNDING_TIMEOUT} from './WindowResize';
 
-const MockChildren = () => {
-    const wiw = React.useContext(CtxWiw); // Window inner width
-    const fs = React.useContext(CtxFs); // Font size
+export const MockChildren = () => {
+    const {store} = useContext(Ctx);
 
     return (
         <>
             <label>
                 {'Window Inner Width: '}
-                <span>{wiw.toString()}</span>
+                <span>{store.wiw}</span>
             </label>
             <br/>
             <label>
                 {'Font Size: '}
-                <span>{fs.toString()}</span>
+                <span>{store.fs}</span>
             </label>
         </>
     )
@@ -26,12 +27,16 @@ const MockChildren = () => {
 let container = document.createElement('div');
 document.body.appendChild(container);
 
-xdescribe('GlobalState Component', () => {
+describe('GlobalState Component', () => {
         window.getComputedStyle = () => ({fontSize: '16px'});
         window.innerWidth = 500;
         act(() => {
             ReactDom.render(
-                <WindowResize><MockChildren/></WindowResize>
+                <Store reducer={rootReducer}>
+                    <WindowResize>
+                        <MockChildren/>
+                    </WindowResize>
+                </Store>
                 , container);
         });
         let elementFs = getFirstLabelByInnerHTMLPattern(/font size/i).lastChild;
@@ -60,7 +65,7 @@ xdescribe('GlobalState Component', () => {
     }
 );
 
-xtest('remove eventListener when unmount', (done) => {
+test('remove eventListener when unmount', (done) => {
     // eventListener有没有被remove就没法测，因为js就没提供getEventListener功能
     act(() => {
         ReactDom.unmountComponentAtNode(container);
