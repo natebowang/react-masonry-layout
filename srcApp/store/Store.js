@@ -1,6 +1,5 @@
 import React, {createContext, useReducer} from 'react';
 import matrixCache from './matrixCache';
-import mockItemsFactory from "./mockItemsFactory";
 
 export const Ctx = createContext();
 
@@ -23,6 +22,7 @@ class InitStore {
         this.columnNo = undefined;
         this.matrixCache = matrixCache;
         this.matrix = [];
-        this.items = mockItemsFactory(10); // mock
+        this.items = [];
+        this.pageNo = 0;
     }
 }

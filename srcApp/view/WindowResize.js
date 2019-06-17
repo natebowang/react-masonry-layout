@@ -5,7 +5,7 @@ export const DEBOUNDING_TIMEOUT = 500;
 // Debouncing timer id
 let debouncingTimer = -1;
 
-const WindowResize = ({children, dispatch}) => {
+const WindowResize = ({children, dispatch, items}) => {
 
     const handleEventDone = () => {
         console.debug('Window Resize');
@@ -15,9 +15,9 @@ const WindowResize = ({children, dispatch}) => {
             fs: parseFloat(window.getComputedStyle(document.body).fontSize),
         });
     };
-    const windowEventHandler = (e) => {
-        e.preventDefault();
-        switch (e.type) {
+    const windowEventHandler = (event) => {
+        event.preventDefault();
+        switch (event.type) {
             case 'resize':
                 clearTimeout(debouncingTimer);
                 // Handle event after this timer, that is set state, and trigger rerender
@@ -38,7 +38,7 @@ const WindowResize = ({children, dispatch}) => {
         return () => {
             ['resize'].forEach(e => window.removeEventListener(e, windowEventHandler));
         };
-    }, []);
+    }, [items]);
 
     return (
         <>

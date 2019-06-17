@@ -1,7 +1,6 @@
 import getColumnWidth from '../utility/getColumnWidth';
 import getColumnNo from '../utility/getColumnNo';
 
-
 export default (prev, action) => {
     let columnWidth = getColumnWidth(action.fs, action.wiw);
     let columnNo = getColumnNo(action.fs, action.wiw);
