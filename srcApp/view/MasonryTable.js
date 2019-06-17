@@ -2,7 +2,7 @@ import React, {useRef, useEffect, memo, useContext} from 'react';
 import {HALF_GAP} from '../config'; // rem
 // import PropTypes from "prop-types";
 
-const MasonryTable = memo(({renderItem, matrix, columnWidth, columnNo}) => {
+const MasonryTable = memo(({renderItem, matrix, columnWidth, columnNo, items}) => {
     // table不能定义margin，会跟body margin collapse，导致判断是否滚动到底错误
     // cell之间的孔隙，在renderItem里设置padding。
     const tableStyle = {
@@ -20,6 +20,7 @@ const MasonryTable = memo(({renderItem, matrix, columnWidth, columnNo}) => {
                             renderItem={renderItem}
                             column={column}
                             columnWidth={columnWidth}
+                            items={items}
                     />
                 )
             })}
@@ -30,7 +31,7 @@ const MasonryTable = memo(({renderItem, matrix, columnWidth, columnNo}) => {
 });
 export default MasonryTable;
 
-const Column = memo(({renderItem, column, columnWidth}) => {
+const Column = memo(({renderItem, column, columnWidth, items}) => {
     const columnStyle = {
         display: 'flex',
         flexDirection: 'column',
@@ -44,6 +45,7 @@ const Column = memo(({renderItem, column, columnWidth}) => {
                     <Cell key={itemIndex}
                           renderItem={renderItem}
                           itemIndex={itemIndex}
+                          items={items}
                     />
                 )
             })}
@@ -54,7 +56,7 @@ const Column = memo(({renderItem, column, columnWidth}) => {
 });
 
 // render props
-const Cell = memo(({renderItem, itemIndex}) => {
+const Cell = memo(({renderItem, itemIndex, items}) => {
     const cellStyle = {
         padding: HALF_GAP + 'rem',
         margin: '0',
@@ -63,7 +65,7 @@ const Cell = memo(({renderItem, itemIndex}) => {
 
     return (
         <div style={cellStyle}>
-            {renderItem(itemIndex)}
+            {renderItem(items[itemIndex])}
         </div>
     );
 }, (prev, next) => {

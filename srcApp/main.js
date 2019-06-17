@@ -12,14 +12,15 @@ import renderItem from './itemApiAdaptor/renderItem';
 // Main component also integrated connect function.
 // I have to transfer context to props to use React.memo.
 const Main = () => {
-    const {store: {matrix, columnWidth, columnNo}, dispatch}
+    const {store: {matrix, columnWidth, columnNo, items}, dispatch}
         = useContext(Ctx);
     return (
         <WindowResize dispatch={dispatch}>
             <MasonryTable renderItem={renderItem}
-                   matrix={matrix}
-                   columnWidth={columnWidth}
-                   columnNo={columnNo}
+                          matrix={matrix}
+                          columnWidth={columnWidth}
+                          columnNo={columnNo}
+                          items={items}
             />
         </WindowResize>
     );
