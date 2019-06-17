@@ -3,8 +3,8 @@ import {HALF_GAP} from '../config'; // rem
 // import PropTypes from "prop-types";
 
 const MasonryTable = memo(({renderItem, matrix, columnWidth, columnNo}) => {
-
     // table不能定义margin，会跟body margin collapse，导致判断是否滚动到底错误
+    // cell之间的孔隙，在renderItem里设置padding。
     const tableStyle = {
         display: 'flex',
         justifyContent: 'center',
