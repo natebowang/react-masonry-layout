@@ -5,12 +5,12 @@ export const DEBOUNDING_TIMEOUT = 500;
 // Debouncing timer id
 let debouncingTimer = -1;
 
-const WindowResize = ({children, dispatch, items}) => {
+const UpdateMatrix = ({children, dispatch, items}) => {
 
     const handleEventDone = () => {
-        console.debug('Window Resize');
+        console.debug('Update Matrix');
         dispatch({
-            type: 'windowResize',
+            type: 'updateMatrix',
             wiw: window.innerWidth,
             fs: parseFloat(window.getComputedStyle(document.body).fontSize),
         });
@@ -31,7 +31,7 @@ const WindowResize = ({children, dispatch, items}) => {
     useEffect(() => {
         ['resize'].forEach(e => window.addEventListener(e, windowEventHandler));
         dispatch({
-            type: 'windowResize',
+            type: 'updateMatrix',
             wiw: window.innerWidth,
             fs: parseFloat(window.getComputedStyle(document.body).fontSize),
         });
@@ -47,4 +47,4 @@ const WindowResize = ({children, dispatch, items}) => {
     );
 };
 
-export default WindowResize;
+export default UpdateMatrix;

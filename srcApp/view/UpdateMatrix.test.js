@@ -4,7 +4,7 @@ import {act} from 'react-dom/test-utils';
 import getFirstLabelByInnerHTMLPattern from '../utility/getFirstLabelByInnerHTMLPattern'
 import rootReducer from "../reducer/rootReducer";
 import Store, {Ctx} from '../store/Store';
-import WindowResize, {DEBOUNDING_TIMEOUT} from './WindowResize';
+import UpdateMatrix, {DEBOUNDING_TIMEOUT} from './UpdateMatrix';
 
 let container = document.createElement('div');
 document.body.appendChild(container);
@@ -30,9 +30,9 @@ export const MockChildren = () => {
 const MockMain = () => {
     const {dispatch} = useContext(Ctx);
     return (
-        <WindowResize dispatch={dispatch}>
+        <UpdateMatrix dispatch={dispatch}>
             <MockChildren/>
-        </WindowResize>
+        </UpdateMatrix>
     )
 };
 

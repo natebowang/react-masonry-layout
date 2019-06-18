@@ -1,4 +1,4 @@
-import reducer from './windowResizeReducer';
+import reducer from './updateMatrixReducer';
 import matrixCache from '../store/matrixCache';
 
 test('Dispatch window resize event.', () => {

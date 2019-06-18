@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import Store, {Ctx} from './store/Store';
 import rootReducer from './reducer/rootReducer';
 import MockReachBottom from "./view/MockReachBottom";
-import WindowResize from "./view/WindowResize";
+import UpdateMatrix from "./view/UpdateMatrix";
 import Table from "./view/MasonryTable";
 import renderItem from './itemApiAdaptor/renderItem';
 // 2st option for service worker
@@ -17,14 +17,14 @@ const Main = () => {
         = useContext(Ctx);
     return (
         <MockReachBottom dispatch={dispatch}>
-            <WindowResize dispatch={dispatch} items={items}>
+            <UpdateMatrix dispatch={dispatch} items={items}>
                 <Table renderItem={renderItem}
                        matrix={matrix}
                        columnWidth={columnWidth}
                        columnNo={columnNo}
                        items={items}
                 />
-            </WindowResize>
+            </UpdateMatrix>
         </MockReachBottom>
     );
 };
