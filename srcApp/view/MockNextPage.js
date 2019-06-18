@@ -1,17 +1,17 @@
 import React from 'react';
 
-const MockReachBottom = ({children, dispatch}) => {
+const MockNextPage = ({children, dispatch}) => {
     const reachBottomHandler = (event) => {
         event.preventDefault();
         dispatch({
-            type: 'reachBottom',
+            type: 'nextPage',
         });
     };
     return (
         <>
             {children}
-            <button onClick={reachBottomHandler}>Next</button>
+            <button onClick={reachBottomHandler}>Next Page</button>
         </>
     )
 };
-export default MockReachBottom;
+export default MockNextPage;

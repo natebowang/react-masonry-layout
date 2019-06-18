@@ -1,10 +1,10 @@
 import updateMatrixReducer from './updateMatrixReducer';
-import mockReachBottomReducer from "./mockReachBottomReducer";
+import mockNextPageReducer from "./mockNextPageReducer";
 
 export default (prev, action) => {
     switch (action.type) {
-        case 'reachBottom':
-            return mockReachBottomReducer(prev);
+        case 'nextPage':
+            return mockNextPageReducer(prev);
         case 'updateMatrix' :
             return updateMatrixReducer(prev, action);
         default:

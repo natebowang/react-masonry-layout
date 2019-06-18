@@ -1,5 +1,5 @@
 import {MatrixCache} from './matrixCache';
-import {itemsTemplate} from "../reducer/mockReachBottomReducer";
+import {itemsTemplate} from "../reducer/mockNextPageReducer";
 import dep from "../itemApiAdaptor/getEstimatedCellHeight";
 
 jest.mock('../itemApiAdaptor/getEstimatedCellHeight', () => (()=>3));

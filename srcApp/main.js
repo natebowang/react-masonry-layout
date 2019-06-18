@@ -3,7 +3,7 @@ import React, {useContext} from 'react';
 import ReactDOM from 'react-dom';
 import Store, {Ctx} from './store/Store';
 import rootReducer from './reducer/rootReducer';
-import MockReachBottom from "./view/MockReachBottom";
+import MockNextPage from "./view/MockNextPage";
 import UpdateMatrix from "./view/UpdateMatrix";
 import Table from "./view/MasonryTable";
 import renderItem from './itemApiAdaptor/renderItem';
@@ -16,7 +16,7 @@ const Main = () => {
     const {store: {matrix, columnWidth, columnNo, items}, dispatch}
         = useContext(Ctx);
     return (
-        <MockReachBottom dispatch={dispatch}>
+        <MockNextPage dispatch={dispatch}>
             <UpdateMatrix dispatch={dispatch} items={items}>
                 <Table renderItem={renderItem}
                        matrix={matrix}
@@ -25,7 +25,7 @@ const Main = () => {
                        items={items}
                 />
             </UpdateMatrix>
-        </MockReachBottom>
+        </MockNextPage>
     );
 };
 
