@@ -111,7 +111,8 @@ test('Clear cache', () => {
 test('cellHeights follows items', () => {
     const mc = new MatrixCache();
     const cw = 21;
-    mc.getCwCache(cw).followItems(itemsTemplate, cw);
+    const fs = 16;
+    mc.getCwCache(cw).followItems(itemsTemplate, cw, fs);
     expect(mc[cw].cellHeights)
         .toEqual(Array(20).fill(3));
 });

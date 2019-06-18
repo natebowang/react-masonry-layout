@@ -75,11 +75,11 @@ class ColumnWidthCache {
         this.cellHeights = this.cellHeights.concat(cellHeights);
     };
 
-    followItems = (items, columnWidth) => {
+    followItems = (items, columnWidth, fs) => {
         let lchi = this.cellHeights.length-1; // last cell heights index
         let il = items.length; // array items length
         while (++lchi < il) {
-            this.concatCellHeights(getItemHeight(items[lchi], columnWidth));
+            this.concatCellHeights(getItemHeight(items[lchi], columnWidth, fs));
         }
     };
 }
