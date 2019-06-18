@@ -1,4 +1,4 @@
-const itemsTemplate = [
+export const itemsTemplate = [
     {
         "id": 1,
         "title": "HTTP headers for the responsible developer",

@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App changes the class when hovered 1`] = `
+Array [
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "fontSize": "1.2rem",
+        "fontWeight": "bold",
+        "hyphens": "auto",
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "padding": "0.4rem",
+        "wordBreak": "break-word",
+      }
+    }
+  >
+    1
+     
+    HTTP headers for the responsible developer
+  </div>,
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "background": "#e0f0f0",
+        "borderRadius": "0.2rem",
+        "display": "flex",
+        "fontSize": "1rem",
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "padding": "0.4rem",
+        "wordBreak": "break-word",
+      }
+    }
+  >
+    A hidden Cupid in Vermeer’s Girl Reading a Letter at an Open Window, one of the world’s most famous paintings, is set to resurface on the canvas after two and a half centuries behind a layer of paint. During restoration work, conservators discovered, to their surprise, that the naked figure—which dominates the upper right section of the picture—was overpainted long after the artist’s death.
+  </div>,
+]
+`;

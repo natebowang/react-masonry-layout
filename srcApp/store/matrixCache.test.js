@@ -1,5 +1,5 @@
 import {MatrixCache} from './matrixCache';
-import mockItemsFactory from "./mockItemsFactory";
+import {itemsTemplate} from "../reducer/mockReachBottomReducer";
 import dep from "../itemApiAdaptor/getItemHeight";
 
 jest.mock('../itemApiAdaptor/getItemHeight', () => (()=>3));
@@ -109,10 +109,9 @@ test('Clear cache', () => {
 });
 
 test('cellHeights follows items', () => {
-    const items = mockItemsFactory(1);
     const mc = new MatrixCache();
     const cw = 21;
-    mc.getCwCache(cw).followItems(items);
+    mc.getCwCache(cw).followItems(itemsTemplate, cw);
     expect(mc[cw].cellHeights)
         .toEqual(Array(20).fill(3));
 });

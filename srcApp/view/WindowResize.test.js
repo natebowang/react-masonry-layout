@@ -6,6 +6,9 @@ import rootReducer from "../reducer/rootReducer";
 import Store, {Ctx} from '../store/Store';
 import WindowResize, {DEBOUNDING_TIMEOUT} from './WindowResize';
 
+let container = document.createElement('div');
+document.body.appendChild(container);
+
 export const MockChildren = () => {
     const {store} = useContext(Ctx);
 
@@ -23,9 +26,6 @@ export const MockChildren = () => {
         </>
     )
 };
-
-let container = document.createElement('div');
-document.body.appendChild(container);
 
 const MockMain = () => {
     const {dispatch} = useContext(Ctx);
@@ -49,7 +49,7 @@ describe('GlobalState Component', () => {
         let elementFs = getFirstLabelByInnerHTMLPattern(/font size/i).lastChild;
         let elementWiw = getFirstLabelByInnerHTMLPattern(/window inner width/i).lastChild;
 
-        test('initial state', (done) => {
+        test('Initial state', (done) => {
             setTimeout(() => {
                 expect(elementFs.innerHTML).toBe('16');
                 expect(elementWiw.innerHTML).toBe('500');
@@ -57,7 +57,7 @@ describe('GlobalState Component', () => {
             }, 0);
         });
 
-        test('resize', (done) => {
+        test('Window resize', (done) => {
             window.getComputedStyle = () => ({fontSize: '18px'});
             window.innerWidth = 800;
             act(() => {
@@ -72,7 +72,7 @@ describe('GlobalState Component', () => {
     }
 );
 
-test('remove eventListener when unmount', (done) => {
+test('Remove eventListener when unmount', (done) => {
     // eventListener有没有被remove就没法测，因为js就没提供getEventListener功能
     act(() => {
         ReactDom.unmountComponentAtNode(container);

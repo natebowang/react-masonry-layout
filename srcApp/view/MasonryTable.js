@@ -27,7 +27,9 @@ const MasonryTable = memo(({renderItem, matrix, columnWidth, columnNo, items}) =
         </div>
     )
 }, (prev, next) => {
-    return prev.matrix === next.matrix && prev.columnWidth === next.columnWidth
+    return prev.matrix === next.matrix
+        && prev.columnWidth === next.columnWidth
+        && prev.columnNo === next.columnNo
 });
 export default MasonryTable;
 
@@ -52,7 +54,8 @@ const Column = memo(({renderItem, column, columnWidth, items}) => {
         </div>
     )
 }, (prev, next) => {
-    return prev.column === next.column && prev.columnWidth === next.columnWidth
+    return prev.column === next.column
+        && prev.columnWidth === next.columnWidth
 });
 
 // render props
