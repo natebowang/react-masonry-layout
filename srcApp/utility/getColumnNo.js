@@ -1,5 +1,4 @@
-import {HALF_GAP} from '../config';
-import {MIN_COLUMN_NO} from '../config';
+import {HALF_GAP, MIN_COLUMN_NO} from '../config';
 import getColumnWidth from './getColumnWidth';
 
 export default (fs, wiw) => {

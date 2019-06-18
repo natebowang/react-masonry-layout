@@ -1,11 +1,11 @@
 import React from 'react';
 
-export const titlePadding = 0.4;
-export const titleFontSize = 1.2;
+export const titlePaddingRem = 0.4;
+export const titleFontSizeRem = 1.2;
 export const titleLineHeight = 1.15;
 const titleStyle = {
-    padding: titlePadding + 'rem',
-    fontSize: titleFontSize + 'rem',
+    padding: titlePaddingRem + 'rem',
+    fontSize: titleFontSizeRem + 'rem',
     lineHeight: titleLineHeight,
     fontWeight: 'bold',
     display: 'flex',
@@ -15,12 +15,12 @@ const titleStyle = {
     hyphens: 'auto',
     overflow: 'hidden',
 };
-export const contentPadding = 0.4;
-export const contentFontSize = 1;
+export const contentPaddingRem = 0.4;
+export const contentFontSizeRem = 1;
 export const contentLineHeight = 1.15;
 const contentStyle = {
-    padding: contentPadding + 'rem',
-    fontSize: contentFontSize + 'rem',
+    padding: contentPaddingRem + 'rem',
+    fontSize: contentFontSizeRem + 'rem',
     lineHeight: contentLineHeight,
     borderRadius: '0.2rem',
     background: '#e0f0f0',
