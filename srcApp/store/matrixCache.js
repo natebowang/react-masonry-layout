@@ -103,6 +103,7 @@ class ColumnNoCache {
         }); // 空数组返回0
     };
 
+    // set real column heights, not being used now
     setColumnHeights = (columnHeights) => {
         this.offsetBottomMatrix.map((arr, idx) => {
             if (arr.tail() !== undefined) {
