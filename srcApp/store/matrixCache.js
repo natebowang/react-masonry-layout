@@ -1,6 +1,6 @@
 import binarySearch from "../utility/binarySearch";
 import '../utility/tail';
-import getItemHeight from "../itemApiAdaptor/getItemHeight";
+import getEstimatedItemHeight from "../itemApiAdaptor/getEstimatedCellHeight";
 
 // Usage:
 // Service worker concat estimated cellHeights.
@@ -79,7 +79,7 @@ class ColumnWidthCache {
         let lchi = this.cellHeights.length-1; // last cell heights index
         let il = items.length; // array items length
         while (++lchi < il) {
-            this.concatCellHeights(getItemHeight(items[lchi], columnWidth, fs));
+            this.concatCellHeights(getEstimatedItemHeight(items[lchi], columnWidth, fs));
         }
     };
 }

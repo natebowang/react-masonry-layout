@@ -1,8 +1,8 @@
 import {MatrixCache} from './matrixCache';
 import {itemsTemplate} from "../reducer/mockReachBottomReducer";
-import dep from "../itemApiAdaptor/getItemHeight";
+import dep from "../itemApiAdaptor/getEstimatedCellHeight";
 
-jest.mock('../itemApiAdaptor/getItemHeight', () => (()=>3));
+jest.mock('../itemApiAdaptor/getEstimatedCellHeight', () => (()=>3));
 
 test('New cwC', () => {
     const mc = new MatrixCache();
