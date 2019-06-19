@@ -5,10 +5,10 @@ export default (prev, action) => {
         .getCwCache(cw)
         .getCnCache(cn)
         .setColumnHeight(action.columnIndex, action.columnHeight);
-    console.debug(prev.matrixCache
-        .getCwCache(cw)
-        .getCnCache(cn)
-        .offsetBottomMatrix
-    );
+    // console.debug(prev.matrixCache
+    //     .getCwCache(cw)
+    //     .getCnCache(cn)
+    //     .offsetBottomMatrix
+    // );
     return {...prev};
 };

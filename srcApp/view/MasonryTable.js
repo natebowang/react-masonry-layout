@@ -1,8 +1,8 @@
 import React, {useRef, useEffect, memo} from 'react';
 import {HALF_GAP} from '../config'; // rem
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
-const MasonryTable = memo(({dispatch, renderItem, matrix, columnWidth, columnNo, items}) => {
+const Table = ({dispatch, renderItem, matrix, columnWidth, columnNo, items}) => {
     // table不能定义margin，会跟body margin collapse，导致判断是否滚动到底错误
     // cell之间的孔隙，在renderItem里设置padding。
     const tableStyle = {
@@ -28,14 +28,23 @@ const MasonryTable = memo(({dispatch, renderItem, matrix, columnWidth, columnNo,
             })}
         </div>
     )
-}, (prev, next) => {
+};
+Table.propTypes = {
+    dispatch: PropTypes.func,
+    renderItem: PropTypes.func,
+    matrix: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
+    columnWidth: PropTypes.number,
+    columnNo: PropTypes.number,
+    items: PropTypes.array,
+};
+const TableMemo = memo(Table, (prev, next) => {
     return prev.matrix === next.matrix
         && prev.columnWidth === next.columnWidth
         && prev.columnNo === next.columnNo
 });
-export default MasonryTable;
+export default TableMemo;
 
-const Column = memo(({dispatch, columnIndex, renderItem, column, columnWidth, items}) => {
+const Column = ({dispatch, columnIndex, renderItem, column, columnWidth, items}) => {
     const columnStyle = {
         display: 'flex',
         // Very important, default will stretch to the height of the container table
@@ -67,13 +76,22 @@ const Column = memo(({dispatch, columnIndex, renderItem, column, columnWidth, it
             })}
         </div>
     )
-}, (prev, next) => {
+};
+Column.propTypes = {
+    dispatch: PropTypes.func,
+    columnIndex: PropTypes.number,
+    renderItem: PropTypes.func,
+    column: PropTypes.arrayOf(PropTypes.number),
+    columnWidth: PropTypes.number,
+    items: PropTypes.array,
+};
+const ColumnMemo = memo(Column, (prev, next) => {
     return prev.column === next.column
         && prev.columnWidth === next.columnWidth
 });
 
-// render props
-const Cell = memo(({renderItem, itemIndex, items}) => {
+// Render props pattern
+const Cell = ({renderItem, itemIndex, items}) => {
     const cellStyle = {
         padding: HALF_GAP + 'rem',
         margin: '0',
@@ -85,6 +103,12 @@ const Cell = memo(({renderItem, itemIndex, items}) => {
             {renderItem(items[itemIndex])}
         </div>
     );
-}, (prev, next) => {
+};
+Cell.propTypes = {
+    renderItem: PropTypes.func,
+    itemIndex: PropTypes.number,
+    items: PropTypes.array,
+};
+const CellMemo = memo(Cell, (prev, next) => {
     return prev.itemIndex === next.itemIndex
 });

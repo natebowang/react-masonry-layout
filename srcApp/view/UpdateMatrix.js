@@ -8,7 +8,6 @@ let debouncingTimer = -1;
 const UpdateMatrix = ({children, dispatch, items}) => {
 
     const handleEventDone = () => {
-        console.debug('Update Matrix');
         dispatch({
             type: 'updateMatrix',
             wiw: window.innerWidth,
