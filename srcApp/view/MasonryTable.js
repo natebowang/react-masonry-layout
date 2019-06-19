@@ -1,8 +1,8 @@
-import React, {useRef, useEffect, memo, useContext} from 'react';
+import React, {useRef, useEffect, memo} from 'react';
 import {HALF_GAP} from '../config'; // rem
 // import PropTypes from "prop-types";
 
-const MasonryTable = memo(({renderItem, matrix, columnWidth, columnNo, items}) => {
+const MasonryTable = memo(({dispatch, renderItem, matrix, columnWidth, columnNo, items}) => {
     // table不能定义margin，会跟body margin collapse，导致判断是否滚动到底错误
     // cell之间的孔隙，在renderItem里设置padding。
     const tableStyle = {
@@ -17,6 +17,8 @@ const MasonryTable = memo(({renderItem, matrix, columnWidth, columnNo, items}) =
             {matrix.map((column, columnIndex) => {
                 return (
                     <Column key={columnIndex}
+                            dispatch={dispatch}
+                            columnIndex={columnIndex}
                             renderItem={renderItem}
                             column={column}
                             columnWidth={columnWidth}
@@ -33,15 +35,27 @@ const MasonryTable = memo(({renderItem, matrix, columnWidth, columnNo, items}) =
 });
 export default MasonryTable;
 
-const Column = memo(({renderItem, column, columnWidth, items}) => {
+const Column = memo(({dispatch, columnIndex, renderItem, column, columnWidth, items}) => {
     const columnStyle = {
         display: 'flex',
+        // Very important, default will stretch to the height of the container table
+        // and adjust column height will wrong.
+        alignSelf: 'flex-start',
         flexDirection: 'column',
         width: columnWidth + 'rem',
     };
 
+    const ref = useRef(null);
+    useEffect(() => {
+        dispatch({
+            type: 'adjustColumnHeight',
+            columnIndex: columnIndex,
+            columnHeight: ref.current.clientHeight,
+        });
+    });
+
     return (
-        <div style={columnStyle}>
+        <div ref={ref} style={columnStyle}>
             {column.map(itemIndex => {
                 return (
                     <Cell key={itemIndex}

@@ -14,6 +14,7 @@ exports[`App changes the class when hovered 1`] = `
   <div
     style={
       Object {
+        "alignSelf": "flex-start",
         "display": "flex",
         "flexDirection": "column",
         "width": "20rem",
@@ -76,6 +77,7 @@ exports[`App changes the class when hovered 1`] = `
   <div
     style={
       Object {
+        "alignSelf": "flex-start",
         "display": "flex",
         "flexDirection": "column",
         "width": "20rem",
@@ -138,6 +140,7 @@ exports[`App changes the class when hovered 1`] = `
   <div
     style={
       Object {
+        "alignSelf": "flex-start",
         "display": "flex",
         "flexDirection": "column",
         "width": "20rem",
@@ -200,6 +203,7 @@ exports[`App changes the class when hovered 1`] = `
   <div
     style={
       Object {
+        "alignSelf": "flex-start",
         "display": "flex",
         "flexDirection": "column",
         "width": "20rem",

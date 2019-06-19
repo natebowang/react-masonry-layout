@@ -10,7 +10,7 @@ import {
 //     "content": "A hidden Cupid in Vermeer’s Girl Reading a Letter at an Open Window, one of the world’s most famous paintings, is set to resurface on the canvas after two and a half centuries behind a layer of paint. During restoration work, conservators discovered, to their surprise, that the naked figure—which dominates the upper right section of the picture—was overpainted long after the artist’s death."
 // };
 const titleCharWidthPx = 9.21; // This is a experimental value
-const contentCharWidthPx = 6.55; // This is a experimental value
+const contentCharWidthPx = 6.75; // This is a experimental value
 export default (item, columnWidthRem, fs) => {
     const gapPx = HALF_GAP * fs * 2;
     const columnWidthPx = columnWidthRem * fs;

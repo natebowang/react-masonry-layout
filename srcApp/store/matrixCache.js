@@ -76,7 +76,7 @@ class ColumnWidthCache {
     };
 
     followItems = (items, columnWidth, fs) => {
-        let lchi = this.cellHeights.length-1; // last cell heights index
+        let lchi = this.cellHeights.length - 1; // last cell heights index
         let il = items.length; // array items length
         while (++lchi < il) {
             this.concatCellHeights(getEstimatedItemHeight(items[lchi], columnWidth, fs));
@@ -101,15 +101,6 @@ class ColumnNoCache {
             let tmp = this.offsetBottomMatrix[idx].tail();
             return tmp === undefined ? 0 : tmp;
         }); // 空数组返回0
-    };
-
-    // set real column heights, not being used now
-    setColumnHeights = (columnHeights) => {
-        this.offsetBottomMatrix.map((arr, idx) => {
-            if (arr.tail() !== undefined) {
-                arr[arr.length - 1] = columnHeights[idx];
-            }
-        })
     };
 
     getShortestColumnHeight = () => {
@@ -138,8 +129,18 @@ class ColumnNoCache {
 
     concatOffsetBottom = (offsetBottom) => {
         this.offsetBottomMatrix = [...this.offsetBottomMatrix];
-        this.offsetBottomMatrix[this.getShortestColumnIndex()] =
-            this.offsetBottomMatrix[this.getShortestColumnIndex()].concat(offsetBottom);
+        this.offsetBottomMatrix[this.getShortestColumnIndex()]
+            = this.offsetBottomMatrix[this.getShortestColumnIndex()].concat(offsetBottom);
+    };
+
+    setColumnHeight = (columnIndex, columnHeight) => { // immutable
+        if (this.offsetBottomMatrix[columnIndex].tail() !== undefined) {
+            this.offsetBottomMatrix = [...this.offsetBottomMatrix];
+            this.offsetBottomMatrix[columnIndex]
+                = [...this.offsetBottomMatrix[columnIndex]];
+            let col = this.offsetBottomMatrix[columnIndex];
+            col[col.length - 1] = columnHeight;
+        }
     };
 
     followCellHeights = (cellHeights) => {

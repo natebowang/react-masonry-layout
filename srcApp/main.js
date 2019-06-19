@@ -18,7 +18,8 @@ const Main = () => {
     return (
         <MockNextPage dispatch={dispatch}>
             <UpdateMatrix dispatch={dispatch} items={items}>
-                <Table renderItem={renderItem}
+                <Table dispatch={dispatch}
+                       renderItem={renderItem}
                        matrix={matrix}
                        columnWidth={columnWidth}
                        columnNo={columnNo}

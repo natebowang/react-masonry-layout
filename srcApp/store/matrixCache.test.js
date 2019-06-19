@@ -87,7 +87,8 @@ test('Set real column height', () => {
     const chnew = [20, 30, 40];
     mc.getCwCache(cw).concatCellHeights(chnew);
     mc.getCwCache(cw).getCnCache(cn).followCellHeights(mc.getCwCache(cw).cellHeights);
-    mc.getCwCache(cw).getCnCache(cn).setColumnHeights([70, 30]);
+    mc.getCwCache(cw).getCnCache(cn).setColumnHeight(0, 70);
+    mc.getCwCache(cw).getCnCache(cn).setColumnHeight(1, 30);
     expect(mc[cw][cn].offsetBottomMatrix)
         .toEqual([[20, 70], [30]]);
     expect(mc[cw][cn].itemIndexMatrix)
