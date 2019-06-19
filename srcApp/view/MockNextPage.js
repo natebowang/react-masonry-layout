@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MockNextPage = ({children, dispatch}) => {
-    const reachBottomHandler = (event) => {
+    const nextPageHandler = (event) => {
         event.preventDefault();
         dispatch({
             type: 'nextPage',
@@ -10,7 +10,7 @@ const MockNextPage = ({children, dispatch}) => {
     return (
         <>
             {children}
-            <button onClick={reachBottomHandler}>Next Page</button>
+            <button onClick={nextPageHandler}>Next Page</button>
         </>
     )
 };
