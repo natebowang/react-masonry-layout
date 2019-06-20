@@ -29,14 +29,17 @@ const UpdateMatrix = ({children, dispatch, items}) => {
 
     useEffect(() => {
         ['resize'].forEach(event => window.addEventListener(event, windowEventHandler));
+        return () => {
+            ['resize'].forEach(event => window.removeEventListener(event, windowEventHandler));
+        };
+    }, []);
+
+    useEffect(() => {
         dispatch({
             type: 'updateMatrix',
             wiw: window.innerWidth,
             fs: parseFloat(window.getComputedStyle(document.body).fontSize),
         });
-        return () => {
-            ['resize'].forEach(event => window.removeEventListener(event, windowEventHandler));
-        };
     }, [items]);
 
     return (
