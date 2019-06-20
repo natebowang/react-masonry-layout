@@ -1,11 +1,11 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 
 // Handle event after this timer, that is set state, and trigger rerender
 export const DEBOUNDING_TIMEOUT = 500;
 // Debouncing timer id
 let debouncingTimer = -1;
 
-const UpdateMatrix = ({children, dispatch, items}) => {
+const WindowResizeHandler = ({children, dispatch}) => {
 
     const handleEventDone = () => {
         dispatch({
@@ -14,7 +14,7 @@ const UpdateMatrix = ({children, dispatch, items}) => {
             fs: parseFloat(window.getComputedStyle(document.body).fontSize),
         });
     };
-    const windowEventHandler = (event) => {
+    const windowResizeHandler = (event) => {
         event.preventDefault();
         switch (event.type) {
             case 'resize':
@@ -28,19 +28,16 @@ const UpdateMatrix = ({children, dispatch, items}) => {
     };
 
     useEffect(() => {
-        ['resize'].forEach(event => window.addEventListener(event, windowEventHandler));
-        return () => {
-            ['resize'].forEach(event => window.removeEventListener(event, windowEventHandler));
-        };
-    }, []);
-
-    useEffect(() => {
         dispatch({
             type: 'updateMatrix',
             wiw: window.innerWidth,
             fs: parseFloat(window.getComputedStyle(document.body).fontSize),
         });
-    }, [items]);
+        ['resize'].forEach(event => window.addEventListener(event, windowResizeHandler));
+        return () => {
+            ['resize'].forEach(event => window.removeEventListener(event, windowResizeHandler));
+        };
+    }, []);
 
     return (
         <>
@@ -49,4 +46,4 @@ const UpdateMatrix = ({children, dispatch, items}) => {
     );
 };
 
-export default UpdateMatrix;
+export default WindowResizeHandler;

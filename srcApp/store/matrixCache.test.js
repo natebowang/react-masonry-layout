@@ -102,7 +102,7 @@ test('Clear cache', () => {
     const chnew = [20, 30, 40];
     mc.getCwCache(cw).concatCellHeights(chnew);
     mc.getCwCache(cw).getCnCache(cn).followCellHeights(mc.getCwCache(cw).cellHeights);
-    mc.clearCache();
+    mc.resetCache();
     expect(mc[cw][cn].offsetBottomMatrix)
         .toEqual([[], []]);
     expect(mc[cw][cn].itemIndexMatrix)

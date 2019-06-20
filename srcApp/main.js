@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom';
 import Store, {Ctx} from './store/Store';
 import rootReducer from './reducer/rootReducer';
 import MockNextPage from "./view/MockNextPage";
-import UpdateMatrix from "./view/UpdateMatrix";
+import ItemsUpdateHandler from './view/ItemsUpdateHandler';
+import WindowResizeHandler from "./view/WindowResizeHandler";
 import Table from "./view/MasonryTable";
 import renderItem from './itemApiAdaptor/renderItem';
 // 2st option for service worker
@@ -17,15 +18,17 @@ const Main = () => {
         = useContext(Ctx);
     return (
         <MockNextPage dispatch={dispatch}>
-            <UpdateMatrix dispatch={dispatch} items={items}>
-                <Table dispatch={dispatch}
-                       renderItem={renderItem}
-                       matrix={matrix}
-                       columnWidth={columnWidth}
-                       columnNo={columnNo}
-                       items={items}
-                />
-            </UpdateMatrix>
+            <ItemsUpdateHandler dispatch={dispatch} items={items}>
+                <WindowResizeHandler dispatch={dispatch}>
+                    <Table dispatch={dispatch}
+                           renderItem={renderItem}
+                           matrix={matrix}
+                           columnWidth={columnWidth}
+                           columnNo={columnNo}
+                           items={items}
+                    />
+                </WindowResizeHandler>
+            </ItemsUpdateHandler>
         </MockNextPage>
     );
 };

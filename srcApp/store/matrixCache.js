@@ -41,7 +41,7 @@ export class MatrixCache {
     // When user search another keyword, cellHeights, itemIndexMatrix, offsetBottomMatrix
     // are related to items, so they need to be clear.
     // But cwC and cnC are related to window, so they could leave.
-    clearCache = () => {
+    resetCache = () => {
         for (let cw in this) {
             if (this[cw].hasOwnProperty('cellHeights')) {
                 this[cw].cellHeights = [];
