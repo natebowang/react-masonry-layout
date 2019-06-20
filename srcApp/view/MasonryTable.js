@@ -16,7 +16,7 @@ const Table = ({dispatch, renderItem, matrix, columnWidth, columnNo, items}) => 
         <div style={tableStyle}>
             {matrix.map((column, columnIndex) => {
                 return (
-                    <Column key={columnIndex}
+                    <ColumnMemo key={columnIndex}
                             dispatch={dispatch}
                             columnIndex={columnIndex}
                             renderItem={renderItem}
@@ -67,7 +67,7 @@ const Column = ({dispatch, columnIndex, renderItem, column, columnWidth, items})
         <div ref={ref} style={columnStyle}>
             {column.map(itemIndex => {
                 return (
-                    <Cell key={itemIndex}
+                    <CellMemo key={itemIndex}
                           renderItem={renderItem}
                           itemIndex={itemIndex}
                           items={items}
@@ -109,6 +109,8 @@ Cell.propTypes = {
     itemIndex: PropTypes.number,
     items: PropTypes.array,
 };
+// CellMemo use items[itemIndex] to calculate ifEqual instead of just
+// itemIndex. So if item immutably changed, CellMemo will rerender.
 const CellMemo = memo(Cell, (prev, next) => {
-    return prev.itemIndex === next.itemIndex
+    return prev.items[prev.itemIndex] === next.items[next.itemIndex]
 });
