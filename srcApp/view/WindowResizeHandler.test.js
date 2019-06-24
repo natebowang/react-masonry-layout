@@ -36,7 +36,7 @@ const MockMain = () => {
     )
 };
 
-describe('GlobalState Component', () => {
+describe('Window resize', () => {
         window.getComputedStyle = () => ({fontSize: '16px'});
         window.innerWidth = 500;
         act(() => {

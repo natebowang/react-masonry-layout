@@ -9,3 +9,5 @@ export const MIN_COLUMN_NO = 1;
 export const WIW_THRESHOLD = 900; // px
 
 export const DEFAULT_COLUMN_WIDTH = 20; // rem
+
+export const SCROLL_BAR_WIDTH = 20; // rem
