@@ -42,7 +42,7 @@ export const networkOnly = (request) => {
         });
 };
 
-// example: / /pwa-manifest.json
+// example: / /pwa-manifest.json /search/*
 // cache-control: no-cache, no-store, max-age=0, must-revalidate
 export const networkFirst = (request, cacheVersion) => {
     // 1. fetch request first
@@ -92,7 +92,7 @@ export const cacheFirst = (request, cacheVersion) => {
         })
 };
 
-// example: /api/*
+// example: /api/* /entity/*
 // Cache-Control: public, max-age=3600, must-revalidate
 export const cacheFetchRaceFinallyRenew = (request, cacheVersion) => {
     let fetchedResp = fetch(request)
