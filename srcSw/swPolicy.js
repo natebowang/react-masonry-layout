@@ -10,11 +10,15 @@ export default (request, cacheVersion) => {
             return networkFirst(request, cacheVersion).catch(error => {
                 console.error('Policy networkFirst failed. ' + error)
             });
+        case /^\/search\//.test(pathname):
+            return networkFirst(request, cacheVersion).catch(error => {
+                console.error('Policy networkFirst failed. ' + error)
+            });
         case /^\/immutable\//.test(pathname):
             return cacheFirst(request, cacheVersion).catch(error => {
                 console.error('Policy cacheFirst failed. ' + error)
             });
-        case /^\/api\//.test(pathname):
+        case /^\/entity\//.test(pathname):
             return cacheFetchRaceFinallyRenew(request, cacheVersion).catch(error => {
                 console.error('Policy cacheFetchRaceFinallyRenew failed. ' + error)
             });
