@@ -1,5 +1,5 @@
 import React, {useRef, useEffect, memo} from 'react';
-import {HALF_GAP} from '../config'; // rem
+import {HALF_GAP, SCROLL_BAR_WIDTH} from '../config'; // rem
 import PropTypes from "prop-types";
 
 const Table = ({dispatch, renderItem, matrix, columnWidth, columnNo, items}) => {
@@ -9,7 +9,7 @@ const Table = ({dispatch, renderItem, matrix, columnWidth, columnNo, items}) => 
         display: 'flex',
         justifyContent: 'center',
         padding: HALF_GAP + 'rem',
-        minWidth: (columnWidth * columnNo) + 'rem',
+        minWidth: (columnWidth * columnNo - SCROLL_BAR_WIDTH) + 'rem',
     };
 
     return (
@@ -17,12 +17,12 @@ const Table = ({dispatch, renderItem, matrix, columnWidth, columnNo, items}) => 
             {matrix.map((column, columnIndex) => {
                 return (
                     <ColumnMemo key={columnIndex}
-                            dispatch={dispatch}
-                            columnIndex={columnIndex}
-                            renderItem={renderItem}
-                            column={column}
-                            columnWidth={columnWidth}
-                            items={items}
+                                dispatch={dispatch}
+                                columnIndex={columnIndex}
+                                renderItem={renderItem}
+                                column={column}
+                                columnWidth={columnWidth}
+                                items={items}
                     />
                 )
             })}
@@ -68,9 +68,9 @@ const Column = ({dispatch, columnIndex, renderItem, column, columnWidth, items})
             {column.map(itemIndex => {
                 return (
                     <CellMemo key={itemIndex}
-                          renderItem={renderItem}
-                          itemIndex={itemIndex}
-                          items={items}
+                              renderItem={renderItem}
+                              itemIndex={itemIndex}
+                              items={items}
                     />
                 )
             })}
