@@ -7,7 +7,7 @@ const Table = ({dispatch, renderItem, matrix, columnWidth, columnNo, items}) => 
     // cell之间的孔隙，在renderItem里设置padding。
     const tableStyle = {
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'space-evenly',
         padding: HALF_GAP + 'rem',
         minWidth: (columnWidth * columnNo - SCROLL_BAR_WIDTH) + 'rem',
     };
