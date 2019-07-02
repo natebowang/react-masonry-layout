@@ -10,4 +10,4 @@ export const WIW_THRESHOLD = 730; // px
 
 export const DEFAULT_COLUMN_WIDTH = 22; // rem
 
-export const SCROLL_BAR_WIDTH = 0.5; // rem
+export const SCROLL_BAR_WIDTH = 0.8; // rem

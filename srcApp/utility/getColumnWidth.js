@@ -9,7 +9,7 @@ export default (fs, wiw) => {
         const completeColumnNo = Math.round((wiw / fs - 2 * HALF_GAP - SCROLL_BAR_WIDTH)
             / DEFAULT_COLUMN_WIDTH);
         const defaultColumnNo = Math.max(MIN_COLUMN_NO, completeColumnNo);
-        return ((wiw) / fs - SCROLL_BAR_WIDTH - 2 * HALF_GAP) / defaultColumnNo;
+        return ((wiw) / fs - 2 * HALF_GAP - SCROLL_BAR_WIDTH) / defaultColumnNo; // rem
     } else {
         return DEFAULT_COLUMN_WIDTH; // rem
     }
