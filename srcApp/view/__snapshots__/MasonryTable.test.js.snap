@@ -6,8 +6,8 @@ exports[`App changes the class when hovered 1`] = `
     Object {
       "display": "flex",
       "justifyContent": "space-evenly",
-      "minWidth": "79.2rem",
-      "padding": "0.5rem",
+      "padding": "0.6rem",
+      "width": "100%",
     }
   }
 >
@@ -24,9 +24,7 @@ exports[`App changes the class when hovered 1`] = `
     <div
       style={
         Object {
-          "border": "0",
-          "margin": "0",
-          "padding": "0.5rem",
+          "padding": "0.6rem",
         }
       }
     >
@@ -37,9 +35,7 @@ exports[`App changes the class when hovered 1`] = `
     <div
       style={
         Object {
-          "border": "0",
-          "margin": "0",
-          "padding": "0.5rem",
+          "padding": "0.6rem",
         }
       }
     >
@@ -50,9 +46,7 @@ exports[`App changes the class when hovered 1`] = `
     <div
       style={
         Object {
-          "border": "0",
-          "margin": "0",
-          "padding": "0.5rem",
+          "padding": "0.6rem",
         }
       }
     >
@@ -63,9 +57,7 @@ exports[`App changes the class when hovered 1`] = `
     <div
       style={
         Object {
-          "border": "0",
-          "margin": "0",
-          "padding": "0.5rem",
+          "padding": "0.6rem",
         }
       }
     >
@@ -87,9 +79,7 @@ exports[`App changes the class when hovered 1`] = `
     <div
       style={
         Object {
-          "border": "0",
-          "margin": "0",
-          "padding": "0.5rem",
+          "padding": "0.6rem",
         }
       }
     >
@@ -100,9 +90,7 @@ exports[`App changes the class when hovered 1`] = `
     <div
       style={
         Object {
-          "border": "0",
-          "margin": "0",
-          "padding": "0.5rem",
+          "padding": "0.6rem",
         }
       }
     >
@@ -113,9 +101,7 @@ exports[`App changes the class when hovered 1`] = `
     <div
       style={
         Object {
-          "border": "0",
-          "margin": "0",
-          "padding": "0.5rem",
+          "padding": "0.6rem",
         }
       }
     >
@@ -126,9 +112,7 @@ exports[`App changes the class when hovered 1`] = `
     <div
       style={
         Object {
-          "border": "0",
-          "margin": "0",
-          "padding": "0.5rem",
+          "padding": "0.6rem",
         }
       }
     >
@@ -150,9 +134,7 @@ exports[`App changes the class when hovered 1`] = `
     <div
       style={
         Object {
-          "border": "0",
-          "margin": "0",
-          "padding": "0.5rem",
+          "padding": "0.6rem",
         }
       }
     >
@@ -163,9 +145,7 @@ exports[`App changes the class when hovered 1`] = `
     <div
       style={
         Object {
-          "border": "0",
-          "margin": "0",
-          "padding": "0.5rem",
+          "padding": "0.6rem",
         }
       }
     >
@@ -176,9 +156,7 @@ exports[`App changes the class when hovered 1`] = `
     <div
       style={
         Object {
-          "border": "0",
-          "margin": "0",
-          "padding": "0.5rem",
+          "padding": "0.6rem",
         }
       }
     >
@@ -189,9 +167,7 @@ exports[`App changes the class when hovered 1`] = `
     <div
       style={
         Object {
-          "border": "0",
-          "margin": "0",
-          "padding": "0.5rem",
+          "padding": "0.6rem",
         }
       }
     >
@@ -213,9 +189,7 @@ exports[`App changes the class when hovered 1`] = `
     <div
       style={
         Object {
-          "border": "0",
-          "margin": "0",
-          "padding": "0.5rem",
+          "padding": "0.6rem",
         }
       }
     >
@@ -226,9 +200,7 @@ exports[`App changes the class when hovered 1`] = `
     <div
       style={
         Object {
-          "border": "0",
-          "margin": "0",
-          "padding": "0.5rem",
+          "padding": "0.6rem",
         }
       }
     >
@@ -239,9 +211,7 @@ exports[`App changes the class when hovered 1`] = `
     <div
       style={
         Object {
-          "border": "0",
-          "margin": "0",
-          "padding": "0.5rem",
+          "padding": "0.6rem",
         }
       }
     >

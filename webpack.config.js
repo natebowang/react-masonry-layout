@@ -184,6 +184,9 @@ config.common = {
             },
             // for css, it will be packaged in node_modules chunk
             // {
+            //     include: [
+            //         srcAppPath,
+            //     ],
             //     test: /\.css$/,
             //     use: [{loader: 'style-loader'}, {loader: 'css-loader'}],
             // },

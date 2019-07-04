@@ -9,7 +9,7 @@ const Table = ({dispatch, renderItem, matrix, columnWidth, columnNo, items}) => 
         display: 'flex',
         justifyContent: 'space-evenly',
         padding: HALF_GAP + 'rem',
-        minWidth: (columnWidth * columnNo - SCROLL_BAR_WIDTH) + 'rem',
+        width: '100%',
     };
 
     return (
@@ -94,8 +94,6 @@ const ColumnMemo = memo(Column, (prev, next) => {
 const Cell = ({renderItem, itemIndex, items}) => {
     const cellStyle = {
         padding: HALF_GAP + 'rem',
-        margin: '0',
-        border: '0',
     };
 
     return (
