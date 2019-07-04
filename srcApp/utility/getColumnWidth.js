@@ -6,10 +6,10 @@ import {
 export default (fs, wiw) => {
     // 小于这个门限值，列数不变，但是把空白位置占满。
     if (wiw <= WIW_THRESHOLD) {
-        const completeColumnNo = Math.round((wiw / fs - 2 * HALF_GAP - SCROLL_BAR_WIDTH)
+        const approximateColumnNo = Math.round((wiw / fs - 2 * HALF_GAP - SCROLL_BAR_WIDTH)
             / DEFAULT_COLUMN_WIDTH);
-        const defaultColumnNo = Math.max(MIN_COLUMN_NO, completeColumnNo);
-        return ((wiw) / fs - SCROLL_BAR_WIDTH - 2 * HALF_GAP) / defaultColumnNo;
+        const defaultColumnNo = Math.max(MIN_COLUMN_NO, approximateColumnNo);
+        return ((wiw) / fs - 2 * HALF_GAP - SCROLL_BAR_WIDTH) / defaultColumnNo; // rem
     } else {
         return DEFAULT_COLUMN_WIDTH; // rem
     }

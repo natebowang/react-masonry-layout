@@ -5,9 +5,9 @@ exports[`App changes the class when hovered 1`] = `
   style={
     Object {
       "display": "flex",
-      "justifyContent": "center",
-      "minWidth": "80rem",
-      "padding": "1rem",
+      "justifyContent": "space-evenly",
+      "minWidth": "79.2rem",
+      "padding": "0.5rem",
     }
   }
 >
@@ -26,7 +26,7 @@ exports[`App changes the class when hovered 1`] = `
         Object {
           "border": "0",
           "margin": "0",
-          "padding": "1rem",
+          "padding": "0.5rem",
         }
       }
     >
@@ -39,7 +39,7 @@ exports[`App changes the class when hovered 1`] = `
         Object {
           "border": "0",
           "margin": "0",
-          "padding": "1rem",
+          "padding": "0.5rem",
         }
       }
     >
@@ -52,7 +52,7 @@ exports[`App changes the class when hovered 1`] = `
         Object {
           "border": "0",
           "margin": "0",
-          "padding": "1rem",
+          "padding": "0.5rem",
         }
       }
     >
@@ -65,7 +65,7 @@ exports[`App changes the class when hovered 1`] = `
         Object {
           "border": "0",
           "margin": "0",
-          "padding": "1rem",
+          "padding": "0.5rem",
         }
       }
     >
@@ -89,7 +89,7 @@ exports[`App changes the class when hovered 1`] = `
         Object {
           "border": "0",
           "margin": "0",
-          "padding": "1rem",
+          "padding": "0.5rem",
         }
       }
     >
@@ -102,7 +102,7 @@ exports[`App changes the class when hovered 1`] = `
         Object {
           "border": "0",
           "margin": "0",
-          "padding": "1rem",
+          "padding": "0.5rem",
         }
       }
     >
@@ -115,7 +115,7 @@ exports[`App changes the class when hovered 1`] = `
         Object {
           "border": "0",
           "margin": "0",
-          "padding": "1rem",
+          "padding": "0.5rem",
         }
       }
     >
@@ -128,7 +128,7 @@ exports[`App changes the class when hovered 1`] = `
         Object {
           "border": "0",
           "margin": "0",
-          "padding": "1rem",
+          "padding": "0.5rem",
         }
       }
     >
@@ -152,7 +152,7 @@ exports[`App changes the class when hovered 1`] = `
         Object {
           "border": "0",
           "margin": "0",
-          "padding": "1rem",
+          "padding": "0.5rem",
         }
       }
     >
@@ -165,7 +165,7 @@ exports[`App changes the class when hovered 1`] = `
         Object {
           "border": "0",
           "margin": "0",
-          "padding": "1rem",
+          "padding": "0.5rem",
         }
       }
     >
@@ -178,7 +178,7 @@ exports[`App changes the class when hovered 1`] = `
         Object {
           "border": "0",
           "margin": "0",
-          "padding": "1rem",
+          "padding": "0.5rem",
         }
       }
     >
@@ -191,7 +191,7 @@ exports[`App changes the class when hovered 1`] = `
         Object {
           "border": "0",
           "margin": "0",
-          "padding": "1rem",
+          "padding": "0.5rem",
         }
       }
     >
@@ -215,7 +215,7 @@ exports[`App changes the class when hovered 1`] = `
         Object {
           "border": "0",
           "margin": "0",
-          "padding": "1rem",
+          "padding": "0.5rem",
         }
       }
     >
@@ -228,7 +228,7 @@ exports[`App changes the class when hovered 1`] = `
         Object {
           "border": "0",
           "margin": "0",
-          "padding": "1rem",
+          "padding": "0.5rem",
         }
       }
     >
@@ -241,7 +241,7 @@ exports[`App changes the class when hovered 1`] = `
         Object {
           "border": "0",
           "margin": "0",
-          "padding": "1rem",
+          "padding": "0.5rem",
         }
       }
     >

@@ -14,10 +14,10 @@ test('Dispatch window resize event.', () => {
     let latter = {
         fs: 16,
         wiw: 1024,
-        columnWidth: 20,
-        columnNo: 3,
+        columnWidth: 28,
+        columnNo: 2,
         matrixCache: matrixCache,
-        matrix: [[],[],[]],
+        matrix: [[],[]],
         items: [],
     };
     let action = {
