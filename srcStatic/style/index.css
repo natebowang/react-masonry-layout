@@ -5,6 +5,8 @@
 
 :root {
     box-sizing: border-box; /*width和height包含了border的尺寸*/
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 *,
@@ -32,8 +34,6 @@ html {
 
 body {
     margin: 0;
-    overflow-x: hidden;
-    overflow-y: scroll;
 }
 
 /**
