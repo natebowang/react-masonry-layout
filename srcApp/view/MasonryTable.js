@@ -1,5 +1,5 @@
 import React, {useRef, useEffect, memo} from 'react';
-import {HALF_GAP, SCROLL_BAR_WIDTH} from '../config'; // rem
+import {HALF_GAP} from '../config'; // rem
 import PropTypes from "prop-types";
 
 const Table = ({dispatch, renderItem, matrix, columnWidth, columnNo, items}) => {
@@ -14,13 +14,13 @@ const Table = ({dispatch, renderItem, matrix, columnWidth, columnNo, items}) => 
 
     return (
         <div style={tableStyle}>
-            {matrix.map((column, columnIndex) => {
+            {matrix.map((vector, columnIndex) => {
                 return (
                     <ColumnMemo key={columnIndex}
                                 dispatch={dispatch}
                                 columnIndex={columnIndex}
                                 renderItem={renderItem}
-                                column={column}
+                                vector={vector}
                                 columnWidth={columnWidth}
                                 items={items}
                     />
@@ -44,7 +44,7 @@ const TableMemo = memo(Table, (prev, next) => {
 });
 export default TableMemo;
 
-const Column = ({dispatch, columnIndex, renderItem, column, columnWidth, items}) => {
+const Column = ({dispatch, columnIndex, renderItem, vector, columnWidth, items}) => {
     const columnStyle = {
         display: 'flex',
         // Very important, default will stretch to the height of the container table
@@ -65,7 +65,7 @@ const Column = ({dispatch, columnIndex, renderItem, column, columnWidth, items})
 
     return (
         <div ref={ref} style={columnStyle}>
-            {column.map(itemIndex => {
+            {vector.map(itemIndex => {
                 return (
                     <CellMemo key={itemIndex}
                               renderItem={renderItem}
@@ -81,12 +81,12 @@ Column.propTypes = {
     dispatch: PropTypes.func,
     columnIndex: PropTypes.number,
     renderItem: PropTypes.func,
-    column: PropTypes.arrayOf(PropTypes.number),
+    vector: PropTypes.arrayOf(PropTypes.number),
     columnWidth: PropTypes.number,
     items: PropTypes.array,
 };
 const ColumnMemo = memo(Column, (prev, next) => {
-    return prev.column === next.column
+    return prev.vector === next.vector
         && prev.columnWidth === next.columnWidth
 });
 
