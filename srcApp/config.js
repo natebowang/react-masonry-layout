@@ -1,3 +1,4 @@
+// Masonry Layout
 // half half between cells in masonry layout
 export const HALF_GAP = 0.6; // rem
 
