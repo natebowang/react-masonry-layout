@@ -1,6 +1,6 @@
-import React, {useContext} from 'react';
+import React, {useReducer} from 'react';
 import ReactDOM from 'react-dom';
-import Store, {Ctx} from './store/Store';
+import InitStore from './store/Store';
 import rootReducer from './reducer/rootReducer';
 import MockNextPage from "./view/MockNextPage";
 import ItemsUpdateHandler from './view/ItemsUpdateHandler';
@@ -13,8 +13,8 @@ import renderItem from './itemApiAdaptor/renderItem';
 // Main component also integrated connect function.
 // I have to transfer context to props to use React.memo.
 const Main = () => {
-    const {store: {matrix, columnWidth, columnNo, items}, dispatch}
-        = useContext(Ctx);
+    const [{matrix, columnWidth, columnNo, items}, dispatch]
+        = useReducer(rootReducer, new InitStore());
     return (
         <MockNextPage dispatch={dispatch}>
             <ItemsUpdateHandler dispatch={dispatch} items={items}>
@@ -33,9 +33,7 @@ const Main = () => {
 };
 
 ReactDOM.render((
-    <Store reducer={rootReducer}>
-        <Main/>
-    </Store>
+    <Main/>
 ), document.getElementById('root'));
 
 // 1st option for service worker

@@ -1,18 +1,4 @@
-import React, {createContext, useReducer} from 'react';
 import matrixCache from './matrixCache';
-
-export const Ctx = createContext();
-
-const Store = ({children, reducer}) => {
-    const [store, dispatch] = useReducer(reducer, new InitStore());
-
-    return (
-        <Ctx.Provider value={{store, dispatch}}>
-            {children}
-        </Ctx.Provider>
-    )
-};
-export default Store;
 
 class InitStore {
     constructor() {
@@ -26,3 +12,4 @@ class InitStore {
         this.pageNo = 0;
     }
 }
+export default InitStore;

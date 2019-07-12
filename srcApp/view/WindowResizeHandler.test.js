@@ -1,17 +1,15 @@
-import React, {useContext} from 'react';
+import React, {useReducer} from 'react';
 import ReactDom from 'react-dom';
 import {act} from 'react-dom/test-utils';
 import getFirstLabelByInnerHTMLPattern from '../utility/getFirstLabelByInnerHTMLPattern'
 import rootReducer from "../reducer/rootReducer";
-import Store, {Ctx} from '../store/Store';
+import InitStore from '../store/Store';
 import WindowResizeHandler, {DEBOUNDING_TIMEOUT} from './WindowResizeHandler';
 
 let container = document.createElement('div');
 document.body.appendChild(container);
 
-export const MockChildren = () => {
-    const {store} = useContext(Ctx);
-
+export const MockChildren = ({store}) => {
     return (
         <>
             <label>
@@ -28,10 +26,10 @@ export const MockChildren = () => {
 };
 
 const MockMain = () => {
-    const {dispatch} = useContext(Ctx);
+    const [store, dispatch] = useReducer(rootReducer, new InitStore());
     return (
         <WindowResizeHandler dispatch={dispatch}>
-            <MockChildren/>
+            <MockChildren store={store}/>
         </WindowResizeHandler>
     )
 };
@@ -41,9 +39,7 @@ describe('Window resize', () => {
         window.innerWidth = 500;
         act(() => {
             ReactDom.render((
-                <Store reducer={rootReducer}>
-                    <MockMain/>
-                </Store>
+                <MockMain/>
             ), container);
         });
         let elementFs = getFirstLabelByInnerHTMLPattern(/font size/i).lastChild;
