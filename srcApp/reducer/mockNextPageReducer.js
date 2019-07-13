@@ -102,14 +102,18 @@ export const itemsTemplate = [
 ];
 
 export default (prev) => {
-    return {
-        ...prev,
-        items: prev.items.concat(itemsTemplate.map(
-            (ele) => ({
-                ...ele,
-                id: ele.id + prev.pageNo * itemsTemplate.length,
-            })
-        )),
-        pageNo: prev.pageNo + 1,
+    let items = prev.items.concat(itemsTemplate.map(
+        (ele) => ({
+            ...ele,
+            id: ele.id + prev.pageNo * itemsTemplate.length,
+        })
+    ));
+    let cwC = prev.matrixCache.getCwCache(prev.columnWidth);
+    cwC.followItems(items, prev.columnWidth, prev.fs);
+    let cnC = cwC.getCnCache(prev.columnNo);
+    cnC.followCellHeights(cwC.cellHeights);
+    return {...prev,
+        items: items,
+        matrix: cnC.itemIndexMatrix,
     };
 };
