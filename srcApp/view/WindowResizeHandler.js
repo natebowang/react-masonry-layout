@@ -5,7 +5,7 @@ export const DEBOUNDING_TIMEOUT = 500;
 // Debouncing timer id
 let debouncingTimer = -1;
 
-const WindowResizeHandler = ({children, dispatch}) => {
+const WindowResizeHandler = ({dispatch}) => {
 
     const handleEventDone = () => {
         dispatch({
@@ -39,11 +39,7 @@ const WindowResizeHandler = ({children, dispatch}) => {
         };
     }, []);
 
-    return (
-        <>
-            {children}
-        </>
-    );
+    return <></>;
 };
 
 export default WindowResizeHandler;

@@ -15,17 +15,17 @@ const Main = () => {
     const [{matrix, columnWidth, columnNo, items}, dispatch]
         = useReducer(rootReducer, new InitStore());
     return (
-        <WindowResizeHandler dispatch={dispatch}>
-            <MockNextPage dispatch={dispatch}>
-                <Table dispatch={dispatch}
-                       renderItem={renderItem}
-                       matrix={matrix}
-                       columnWidth={columnWidth}
-                       columnNo={columnNo}
-                       items={items}
-                />
-            </MockNextPage>
-        </WindowResizeHandler>
+        <>
+            <WindowResizeHandler dispatch={dispatch}/>
+            <Table dispatch={dispatch}
+                   renderItem={renderItem}
+                   matrix={matrix}
+                   columnWidth={columnWidth}
+                   columnNo={columnNo}
+                   items={items}
+            />
+            <MockNextPage dispatch={dispatch}/>
+        </>
     );
 };
 

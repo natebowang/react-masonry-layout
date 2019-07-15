@@ -28,9 +28,10 @@ export const MockChildren = ({store}) => {
 const MockMain = () => {
     const [store, dispatch] = useReducer(rootReducer, new InitStore());
     return (
-        <WindowResizeHandler dispatch={dispatch}>
+        <>
+            <WindowResizeHandler dispatch={dispatch}/>
             <MockChildren store={store}/>
-        </WindowResizeHandler>
+        </>
     )
 };
 
