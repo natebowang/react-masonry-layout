@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, memo} from 'react';
 
 // Handle event after this timer, that is set state, and trigger rerender
 export const DEBOUNDING_TIMEOUT = 500;
 // Debouncing timer id
 let debouncingTimer = -1;
 
-const WindowResizeHandler = ({dispatch}) => {
+const WindowResizeHandler = memo(({dispatch}) => {
 
     const handleEventDone = () => {
         dispatch({
@@ -40,6 +40,6 @@ const WindowResizeHandler = ({dispatch}) => {
     }, []);
 
     return <></>;
-};
+});
 
 export default WindowResizeHandler;

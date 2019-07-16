@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {memo} from 'react';
 
-const MockNextPage = ({dispatch}) => {
+const MockNextPage = memo(({dispatch}) => {
     const nextPageHandler = (event) => {
         event.preventDefault();
         dispatch({
@@ -8,5 +8,5 @@ const MockNextPage = ({dispatch}) => {
         });
     };
     return <button onClick={nextPageHandler}>Next Page</button>
-};
+});
 export default MockNextPage;
