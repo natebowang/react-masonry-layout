@@ -1,6 +1,6 @@
 import binarySearch from "../utility/binarySearch";
 import '../utility/tail';
-import getEstimatedItemHeight from "../itemApiAdaptor/getEstimatedCellHeight";
+import getEstimatedItemHeight from "../item-api-adaptor/getEstimatedCellHeight";
 
 // Usage:
 // Service worker concat estimated cellHeights.

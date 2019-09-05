@@ -5,7 +5,7 @@ import rootReducer from './reducer/rootReducer';
 import MockNextPage from "./view/MockNextPage";
 import WindowResizeHandler from "./view/WindowResizeHandler";
 import Table from "./view/MasonryTable";
-import renderItem from './itemApiAdaptor/renderItem';
+import renderItem from './item-api-adaptor/renderItem';
 // 2st option for service worker
 // import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 
